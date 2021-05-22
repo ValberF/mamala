@@ -24,20 +24,19 @@
       <Card>
         <span>Doação de frascos</span>
       </Card>
-
     </div>
   </div>
 </template>
 
 <script>
-import Card from '../components/Card'
+import Card from "../components/Card";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
-    Card
-  }
-}
+    Card,
+  },
+};
 </script>
 
 <style>
