@@ -1,98 +1,102 @@
 <template>
   <div class="register-donor-pre-natal">
-    <h1>CADASTRO DE DOADORA</h1>
-    <ContentContainer>
-      <form>
-        <div id="pre-natal-title">
-          <h2>Pré-Natal</h2>
-          <hr />
-        </div>
+    <BodyContainer>
+      <h1>CADASTRO DE DOADORA</h1>
+      <ContentContainer>
+        <form>
+          <div class="flex-column-start">
+            <h2>Pré-Natal</h2>
+            <hr />
+          </div>
 
-        <div class="section-container">
-          <section class="section-box">
-            <div>
-              <p>Pré-Natal:</p>
-
+          <div class="section-container">
+            <section class="section-box">
               <div>
-                <input
-                  type="radio"
-                  value="1"
-                  v-model="register.preNatal"
-                  id="yes"
-                  name="pre-natal-state"
-                />
-                <label for="yes">Sim</label>
+                <p>Pré-Natal:</p>
+
+                <div>
+                  <input
+                    type="radio"
+                    value="1"
+                    v-model="register.preNatal"
+                    id="yes"
+                    name="pre-natal-state"
+                  />
+                  <label for="yes">Sim</label>
+                </div>
+
+                <div>
+                  <input
+                    type="radio"
+                    value="0"
+                    v-model="register.preNatal"
+                    id="no"
+                    name="pre-natal-state"
+                  />
+                  <label for="no">Não</label>
+                </div>
               </div>
 
-              <div>
-                <input
-                  type="radio"
-                  value="0"
-                  v-model="register.preNatal"
-                  id="no"
-                  name="pre-natal-state"
-                />
-                <label for="no">Não</label>
+              <div class="flex-column-start">
+                <label for="exam">Exames:</label>
+                <textarea
+                  name="exam"
+                  v-model="register.exams"
+                  id="exam"
+                ></textarea>
               </div>
-            </div>
 
-            <div id="exam-container">
-              <label for="exam">Exames:</label>
-              <textarea
-                name="exam"
-                v-model="register.exams"
-                id="exam"
-              ></textarea>
-            </div>
+              <div class="flex-column-start">
+                <label for="disease">Doenças:</label>
+                <textarea
+                  name="disease"
+                  v-model="register.diseases"
+                  id="disease"
+                ></textarea>
+              </div>
+            </section>
 
-            <div id="disease-container">
-              <label for="disease">Doenças:</label>
-              <textarea
-                name="disease"
-                v-model="register.diseases"
-                id="disease"
-              ></textarea>
-            </div>
-          </section>
+            <section class="section-box">
+              <div class="flex-column-start">
+                <label for="medication">Medicação:</label>
+                <textarea
+                  name="medication"
+                  v-model="register.medications"
+                  id="medication"
+                ></textarea>
+              </div>
 
-          <section class="section-box">
-            <div id="medication-container">
-              <label for="medication">Medicação:</label>
-              <textarea
-                name="medication"
-                v-model="register.medications"
-                id="medication"
-              ></textarea>
-            </div>
-
-            <div id="drugs-container">
-              <label for="drugs"
-                >Tóxicos (álcool, fumo e drogas ilícitas):</label
-              >
-              <textarea
-                name="drugs"
-                v-model="register.drugs"
-                id="drugs"
-              ></textarea>
-            </div>
-          </section>
+              <div class="flex-column-start">
+                <label for="drugs"
+                  >Tóxicos (álcool, fumo e drogas ilícitas):</label
+                >
+                <textarea
+                  name="drugs"
+                  v-model="register.drugs"
+                  id="drugs"
+                ></textarea>
+              </div>
+            </section>
+          </div>
+        </form>
+        <div class="button-container">
+          <button id="back">Voltar</button>
+          <button id="next" @click="mostrarDados">Avançar</button>
         </div>
-      </form>
-      <div class="button-container">
-        <button id="back">Voltar</button>
-        <button id="next" @click="mostrarDados">Avançar</button>
-      </div>
-    </ContentContainer>
+      </ContentContainer>
+    </BodyContainer>
   </div>
 </template>
 
 <script>
 import ContentContainer from "../components/ContentContainer";
+import BodyContainer from "../components/BodyContainer";
 
 export default {
   name: "registerDonorPreNatal",
   components: {
     ContentContainer,
+    BodyContainer,
   },
   data() {
     return {};
@@ -111,16 +115,6 @@ export default {
 </script>
 
 <style>
-.register-donor-pre-natal {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-
-  margin-top: 35px;
-  min-height: 75vh;
-}
-
 .register-donor-pre-natal h1 {
   display: flex;
   justify-self: flex-start;
@@ -151,11 +145,7 @@ export default {
   width: 80%;
 }
 
-.register-donor-pre-natal #pre-natal-title,
-.register-donor-pre-natal #exam-container,
-.register-donor-pre-natal #disease-container,
-.register-donor-pre-natal #medication-container,
-.register-donor-pre-natal #drugs-container {
+.register-donor-pre-natal .flex-column-start {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -210,22 +200,11 @@ export default {
   border: 2px solid rgb(97, 92, 92);
 }
 
-/*.register-donor-pre-natal input {
-    font-size: 20px;
-    border-radius: 15px;
-    outline: none;
-    border: 1px solid #7B7B7B;
-
-    background-color: #f2f2f2;
-
-    padding: 7px;
-}*/
-
 .register-donor-pre-natal input:focus {
   border: 2px solid rgb(97, 92, 92);
 }
 
-.register-donor-pre-natal .form-container form hr {
+.register-donor-pre-natal hr {
   width: 65%;
 
   border: 1px solid #575757;

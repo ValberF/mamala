@@ -1,202 +1,264 @@
 <template>
-  <div class="donor-list">
-    <h1>LISTA DE DOADORAS</h1>
-    <ContentContainer>
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th width="34%">Nome</th>
-              <th width="15%">CPF</th>
-              <th width="15%">Contato</th>
-              <th width="22%">E-mail</th>
-              <th width="7%">Doar</th>
-              <th width="7%">Doações</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td width="34%">Raimunda Mariah Débora Vieira</td>
-              <td width="15%">654.095.110-85</td>
-              <td width="15%">(83) 98519-8769</td>
-              <td width="22%">raimunda.mariah@gmail.com</td>
-              <td width="7%" class="icon-class">
-                <i class="fas fa-plus-circle"></i>
-              </td>
-              <td width="7%" class="icon-class">
-                <i class="fas fa-folder-open"></i>
-              </td>
-            </tr>
-            <tr>
-              <td width="34%">Raimunda Mariah Débora Vieira</td>
-              <td width="15%">654.095.110-85</td>
-              <td width="15%">(83) 98519-8769</td>
-              <td width="22%">raimunda.mariah@gmail.com</td>
-              <td width="7%" class="icon-class">
-                <i class="fas fa-plus-circle"></i>
-              </td>
-              <td width="7%" class="icon-class">
-                <i class="fas fa-folder-open"></i>
-              </td>
-            </tr>
-            <tr>
-              <td width="34%">Raimunda Mariah Débora Vieira</td>
-              <td width="15%">654.095.110-85</td>
-              <td width="15%">(83) 98519-8769</td>
-              <td width="22%">raimunda.mariah@gmail.com</td>
-              <td width="7%" class="icon-class">
-                <i class="fas fa-plus-circle"></i>
-              </td>
-              <td width="7%" class="icon-class">
-                <i class="fas fa-folder-open"></i>
-              </td>
-            </tr>
-            <tr>
-              <td width="34%">Raimunda Mariah Débora Vieira</td>
-              <td width="15%">654.095.110-85</td>
-              <td width="15%">(83) 98519-8769</td>
-              <td width="22%">raimunda.mariah@gmail.com</td>
-              <td width="7%" class="icon-class">
-                <i class="fas fa-plus-circle"></i>
-              </td>
-              <td width="7%" class="icon-class">
-                <i class="fas fa-folder-open"></i>
-              </td>
-            </tr>
-            <tr>
-              <td width="34%">Raimunda Mariah Débora Vieira</td>
-              <td width="15%">654.095.110-85</td>
-              <td width="15%">(83) 98519-8769</td>
-              <td width="22%">raimunda.mariah@gmail.com</td>
-              <td width="7%" class="icon-class">
-                <i class="fas fa-plus-circle"></i>
-              </td>
-              <td width="7%" class="icon-class">
-                <i class="fas fa-folder-open"></i>
-              </td>
-            </tr>
-            <tr>
-              <td width="34%">Raimunda Mariah Débora Vieira</td>
-              <td width="15%">654.095.110-85</td>
-              <td width="15%">(83) 98519-8769</td>
-              <td width="22%">raimunda.mariah@gmail.com</td>
-              <td width="7%" class="icon-class">
-                <i class="fas fa-plus-circle"></i>
-              </td>
-              <td width="7%" class="icon-class">
-                <i class="fas fa-folder-open"></i>
-              </td>
-            </tr>
-            <tr>
-              <td width="34%">Raimunda Mariah Débora Vieira</td>
-              <td width="15%">654.095.110-85</td>
-              <td width="15%">(83) 98519-8769</td>
-              <td width="22%">raimunda.mariah@gmail.com</td>
-              <td width="7%" class="icon-class">
-                <i class="fas fa-plus-circle"></i>
-              </td>
-              <td width="7%" class="icon-class">
-                <i class="fas fa-folder-open"></i>
-              </td>
-            </tr>
-            <tr>
-              <td width="34%">Raimunda Mariah Débora Vieira</td>
-              <td width="15%">654.095.110-85</td>
-              <td width="15%">(83) 98519-8769</td>
-              <td width="22%">raimunda.mariah@gmail.com</td>
-              <td width="7%" class="icon-class">
-                <i class="fas fa-plus-circle"></i>
-              </td>
-              <td width="7%" class="icon-class">
-                <i class="fas fa-folder-open"></i>
-              </td>
-            </tr>
-            <tr>
-              <td width="34%">Raimunda Mariah Débora Vieira</td>
-              <td width="15%">654.095.110-85</td>
-              <td width="15%">(83) 98519-8769</td>
-              <td width="22%">raimunda.mariah@gmail.com</td>
-              <td width="7%" class="icon-class">
-                <i class="fas fa-plus-circle"></i>
-              </td>
-              <td width="7%" class="icon-class">
-                <i class="fas fa-folder-open"></i>
-              </td>
-            </tr>
-            <tr>
-              <td width="34%">Raimunda Mariah Débora Vieira</td>
-              <td width="15%">654.095.110-85</td>
-              <td width="15%">(83) 98519-8769</td>
-              <td width="22%">raimunda.mariah@gmail.com</td>
-              <td width="7%" class="icon-class">
-                <i class="fas fa-plus-circle"></i>
-              </td>
-              <td width="7%" class="icon-class">
-                <i class="fas fa-folder-open"></i>
-              </td>
-            </tr>
-            <tr>
-              <td width="34%">Raimunda Mariah Débora Vieira</td>
-              <td width="15%">654.095.110-85</td>
-              <td width="15%">(83) 98519-8769</td>
-              <td width="22%">raimunda.mariah@gmail.com</td>
-              <td width="7%" class="icon-class">
-                <i class="fas fa-plus-circle"></i>
-              </td>
-              <td width="7%" class="icon-class">
-                <i class="fas fa-folder-open"></i>
-              </td>
-            </tr>
-            <tr>
-              <td width="34%">Raimunda Mariah Débora Vieira</td>
-              <td width="15%">654.095.110-85</td>
-              <td width="15%">(83) 98519-8769</td>
-              <td width="22%">raimunda.mariah@gmail.com</td>
-              <td width="7%" class="icon-class">
-                <i class="fas fa-plus-circle"></i>
-              </td>
-              <td width="7%" class="icon-class">
-                <i class="fas fa-folder-open"></i>
-              </td>
-            </tr>
-            <tr>
-              <td width="34%">Raimunda Mariah Débora Vieira</td>
-              <td width="15%">654.095.110-85</td>
-              <td width="15%">(83) 98519-8769</td>
-              <td width="22%">raimunda.mariah@gmail.com</td>
-              <td width="7%" class="icon-class">
-                <i class="fas fa-plus-circle"></i>
-              </td>
-              <td width="7%" class="icon-class">
-                <i class="fas fa-folder-open"></i>
-              </td>
-            </tr>
-            <tr>
-              <td width="34%">Raimunda Mariah Débora Vieira</td>
-              <td width="15%">654.095.110-85</td>
-              <td width="15%">(83) 98519-8769</td>
-              <td width="22%">raimunda.mariah@gmail.com</td>
-              <td width="7%" class="icon-class">
-                <i class="fas fa-plus-circle"></i>
-              </td>
-              <td width="7%" class="icon-class">
-                <i class="fas fa-folder-open"></i>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </ContentContainer>
+  <div class="donor-list"> 
+    <BodyContainer>
+      <h1>LISTA DE DOADORAS</h1>
+      <ContentContainer>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th width="30%">Nome</th>
+                <th width="15%">CPF</th>
+                <th width="15%">Contato</th>
+                <th width="22%">E-mail</th>
+                <th width="6%">Nova Gravidez</th>
+                <th width="6%">Nova Doação</th>
+                <th width="6%">Doações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td width="34%">Raimunda Mariah Débora Vieira</td>
+                <td width="15%">654.095.110-85</td>
+                <td width="15%">(83) 98519-8769</td>
+                <td width="22%">raimunda.mariah@gmail.com</td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-plus-circle"></i>
+                </td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-plus-circle"></i>
+                </td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-folder-open"></i>
+                </td>
+              </tr>
+              <tr>
+                <td width="34%">Raimunda Mariah Débora Vieira</td>
+                <td width="15%">654.095.110-85</td>
+                <td width="15%">(83) 98519-8769</td>
+                <td width="22%">raimunda.mariah@gmail.com</td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-plus-circle"></i>
+                </td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-plus-circle"></i>
+                </td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-folder-open"></i>
+                </td>
+              </tr>
+              <tr>
+                <td width="34%">Raimunda Mariah Débora Vieira</td>
+                <td width="15%">654.095.110-85</td>
+                <td width="15%">(83) 98519-8769</td>
+                <td width="22%">raimunda.mariah@gmail.com</td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-plus-circle"></i>
+                </td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-plus-circle"></i>
+                </td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-folder-open"></i>
+                </td>
+              </tr>
+              <tr>
+                <td width="34%">Raimunda Mariah Débora Vieira</td>
+                <td width="15%">654.095.110-85</td>
+                <td width="15%">(83) 98519-8769</td>
+                <td width="22%">raimunda.mariah@gmail.com</td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-plus-circle"></i>
+                </td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-plus-circle"></i>
+                </td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-folder-open"></i>
+                </td>
+              </tr>
+              <tr>
+                <td width="34%">Raimunda Mariah Débora Vieira</td>
+                <td width="15%">654.095.110-85</td>
+                <td width="15%">(83) 98519-8769</td>
+                <td width="22%">raimunda.mariah@gmail.com</td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-plus-circle"></i>
+                </td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-plus-circle"></i>
+                </td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-folder-open"></i>
+                </td>
+              </tr>
+              <tr>
+                <td width="34%">Raimunda Mariah Débora Vieira</td>
+                <td width="15%">654.095.110-85</td>
+                <td width="15%">(83) 98519-8769</td>
+                <td width="22%">raimunda.mariah@gmail.com</td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-plus-circle"></i>
+                </td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-plus-circle"></i>
+                </td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-folder-open"></i>
+                </td>
+              </tr>
+              <tr>
+                <td width="34%">Raimunda Mariah Débora Vieira</td>
+                <td width="15%">654.095.110-85</td>
+                <td width="15%">(83) 98519-8769</td>
+                <td width="22%">raimunda.mariah@gmail.com</td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-plus-circle"></i>
+                </td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-plus-circle"></i>
+                </td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-folder-open"></i>
+                </td>
+              </tr>
+              <tr>
+                <td width="34%">Raimunda Mariah Débora Vieira</td>
+                <td width="15%">654.095.110-85</td>
+                <td width="15%">(83) 98519-8769</td>
+                <td width="22%">raimunda.mariah@gmail.com</td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-plus-circle"></i>
+                </td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-plus-circle"></i>
+                </td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-folder-open"></i>
+                </td>
+              </tr>
+              <tr>
+                <td width="34%">Raimunda Mariah Débora Vieira</td>
+                <td width="15%">654.095.110-85</td>
+                <td width="15%">(83) 98519-8769</td>
+                <td width="22%">raimunda.mariah@gmail.com</td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-plus-circle"></i>
+                </td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-plus-circle"></i>
+                </td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-folder-open"></i>
+                </td>
+              </tr>
+              <tr>
+                <td width="34%">Raimunda Mariah Débora Vieira</td>
+                <td width="15%">654.095.110-85</td>
+                <td width="15%">(83) 98519-8769</td>
+                <td width="22%">raimunda.mariah@gmail.com</td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-plus-circle"></i>
+                </td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-plus-circle"></i>
+                </td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-folder-open"></i>
+                </td>
+              </tr>
+              <tr>
+                <td width="34%">Raimunda Mariah Débora Vieira</td>
+                <td width="15%">654.095.110-85</td>
+                <td width="15%">(83) 98519-8769</td>
+                <td width="22%">raimunda.mariah@gmail.com</td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-plus-circle"></i>
+                </td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-plus-circle"></i>
+                </td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-folder-open"></i>
+                </td>
+              </tr>
+              <tr>
+                <td width="34%">Raimunda Mariah Débora Vieira</td>
+                <td width="15%">654.095.110-85</td>
+                <td width="15%">(83) 98519-8769</td>
+                <td width="22%">raimunda.mariah@gmail.com</td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-plus-circle"></i>
+                </td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-plus-circle"></i>
+                </td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-folder-open"></i>
+                </td>
+              </tr>
+              <tr>
+                <td width="34%">Raimunda Mariah Débora Vieira</td>
+                <td width="15%">654.095.110-85</td>
+                <td width="15%">(83) 98519-8769</td>
+                <td width="22%">raimunda.mariah@gmail.com</td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-plus-circle"></i>
+                </td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-plus-circle"></i>
+                </td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-folder-open"></i>
+                </td>
+              </tr>
+              <tr>
+                <td width="34%">Raimunda Mariah Débora Vieira</td>
+                <td width="15%">654.095.110-85</td>
+                <td width="15%">(83) 98519-8769</td>
+                <td width="22%">raimunda.mariah@gmail.com</td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-plus-circle"></i>
+                </td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-plus-circle"></i>
+                </td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-folder-open"></i>
+                </td>
+              </tr>
+              <tr>
+                <td width="34%">Raimunda Mariah Débora Vieira</td>
+                <td width="15%">654.095.110-85</td>
+                <td width="15%">(83) 98519-8769</td>
+                <td width="22%">raimunda.mariah@gmail.com</td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-plus-circle"></i>
+                </td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-plus-circle"></i>
+                </td>
+                <td width="6%" class="icon-class">
+                  <i class="fas fa-folder-open"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </ContentContainer>
+    </BodyContainer>
   </div>
 </template>
 
 <script>
 import ContentContainer from "../components/ContentContainer";
+import BodyContainer from "../components/BodyContainer";
 
 export default {
   name: "DonorList",
   components: {
     ContentContainer,
+    BodyContainer,
   },
   data() {
     return {};
@@ -215,16 +277,6 @@ export default {
 </script>
 
 <style>
-.donor-list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-
-  margin-top: 35px;
-  min-height: 75vh;
-}
-
 .donor-list h1 {
   display: flex;
   justify-self: flex-start;

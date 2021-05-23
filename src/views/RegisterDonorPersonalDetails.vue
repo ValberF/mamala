@@ -1,119 +1,127 @@
 <template>
   <div class="register-donor-personal-details">
-    <h1>CADASTRO DE DOADORA</h1>
-    <ContentContainer>
-      <form>
-        <div class="general-data-container">
-          <div class="input-group">
-            <input
-              type="text"
-              id="name"
-              v-model="register.name"
-              placeholder="Nome completo"
-            />
-          </div>
-
-          <div class="input-group">
-            <div>
-              <label for="birth-mother">Data de Nascimento da mãe:</label>
+    <BodyContainer>
+      <h1>CADASTRO DE DOADORA</h1>
+      <ContentContainer>
+        <form>
+          <div class="general-data-container">
+            <div class="input-group">
               <input
-                id="birth-mother"
-                v-model="register.birthMother"
-                type="date"
+                type="text"
+                id="name"
+                v-model="register.name"
+                placeholder="Nome completo"
               />
             </div>
 
-            <div>
-              <label for="birth-baby">Data de Nascimento do filho:</label>
-              <input id="birth-baby" v-model="register.birthBaby" type="date" />
+            <div class="input-group">
+              <div>
+                <label for="birth-mother">Data de Nascimento da mãe:</label>
+                <input
+                  id="birth-mother"
+                  v-model="register.birthMother"
+                  type="date"
+                />
+              </div>
+
+              <div>
+                <label for="birth-baby">Data de Nascimento do filho:</label>
+                <input
+                  id="birth-baby"
+                  v-model="register.birthBaby"
+                  type="date"
+                />
+              </div>
+            </div>
+
+            <div class="input-group">
+              <input
+                type="text"
+                id="grandma-name"
+                v-model="register.grandmaName"
+                placeholder="Nome da avó materna"
+              />
             </div>
           </div>
 
-          <div class="input-group">
-            <input
-              type="text"
-              id="grandma-name"
-              v-model="register.grandmaName"
-              placeholder="Nome da avó materna"
-            />
+          <div class="adress-container">
+            <div id="adress-title">
+              <h2>Endereço</h2>
+              <hr />
+            </div>
+
+            <div class="input-group">
+              <input
+                type="text"
+                id="street"
+                v-model="register.street"
+                placeholder="Rua"
+              />
+            </div>
+
+            <div class="input-group">
+              <div>
+                <input
+                  type="text"
+                  v-model="register.district"
+                  placeholder="Bairro"
+                />
+              </div>
+
+              <div>
+                <input
+                  type="number"
+                  v-model="register.homeNumber"
+                  placeholder="Número da casa"
+                />
+              </div>
+            </div>
+
+            <div class="input-group">
+              <input
+                type="text"
+                v-model="register.reference"
+                placeholder="Ponto de referência"
+              />
+            </div>
+
+            <div class="input-group">
+              <div>
+                <input
+                  type="text"
+                  v-model="register.naturalness"
+                  placeholder="Naturalidade"
+                />
+              </div>
+
+              <div>
+                <input
+                  type="text"
+                  v-model="register.phone"
+                  placeholder="Telefone/Celular"
+                />
+              </div>
+            </div>
           </div>
+        </form>
+        <div class="button-container">
+          <button id="back">Voltar</button>
+          <button id="next" @click="mostrarDados">Avançar</button>
         </div>
-
-        <div class="adress-container">
-          <div id="adress-title">
-            <h2>Endereço</h2>
-            <hr />
-          </div>
-
-          <div class="input-group">
-            <input
-              type="text"
-              id="street"
-              v-model="register.street"
-              placeholder="Rua"
-            />
-          </div>
-
-          <div class="input-group">
-            <div>
-              <input
-                type="text"
-                v-model="register.district"
-                placeholder="Bairro"
-              />
-            </div>
-
-            <div>
-              <input
-                type="number"
-                v-model="register.homeNumber"
-                placeholder="Número da casa"
-              />
-            </div>
-          </div>
-
-          <div class="input-group">
-            <input
-              type="text"
-              v-model="register.reference"
-              placeholder="Ponto de referência"
-            />
-          </div>
-
-          <div class="input-group">
-            <div>
-              <input
-                type="text"
-                v-model="register.naturalness"
-                placeholder="Naturalidade"
-              />
-            </div>
-
-            <div>
-              <input
-                type="text"
-                v-model="register.phone"
-                placeholder="Telefone/Celular"
-              />
-            </div>
-          </div>
-        </div>
-      </form>
-      <div class="button-container">
-        <button id="back">Voltar</button>
-        <button id="next" @click="mostrarDados">Avançar</button>
-      </div>
-    </ContentContainer>
+      </ContentContainer>
+    </BodyContainer>
   </div>
 </template>
 
 <script>
 import ContentContainer from "../components/ContentContainer";
+import BodyContainer from "../components/BodyContainer";
 
 export default {
   name: "registerDonorPersonalDetails",
   components: {
     ContentContainer,
+    BodyContainer,
   },
   data() {
     return {};
@@ -132,16 +140,6 @@ export default {
 </script>
 
 <style>
-.register-donor-personal-details {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-
-  margin-top: 35px;
-  min-height: 75vh;
-}
-
 .register-donor-personal-details h1 {
   display: flex;
   justify-self: flex-start;

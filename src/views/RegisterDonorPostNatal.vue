@@ -1,77 +1,81 @@
 <template>
   <div class="register-donor-post-natal">
-    <h1>CADASTRO DE DOADORA</h1>
-    <ContentContainer>
-      <form>
-        <div id="post-natal-title">
-          <h2>Pós Parto</h2>
-          <hr />
+    <BodyContainer>
+      <h1>CADASTRO DE DOADORA</h1>
+      <ContentContainer>
+        <form>
+          <div id="post-natal-title" class="flex-column-start">
+            <h2>Pós Parto</h2>
+            <hr />
+          </div>
+
+          <div class="section-container">
+            <section class="section-box">
+              <div class="flex-column-start">
+                <label for="child-birth-type">Tipo de parto:</label>
+                <select name="child-birth-type" id="child-birth-type">
+                  <option value="normal">normal</option>
+                  <option value="cesariana">cesariana</option>
+                </select>
+              </div>
+
+              <div class="flex-column-start">
+                <label for="obstetrician">Obstetra:</label>
+                <select name="obstetrician" id="obstetrician">
+                  <option value="normal">normal</option>
+                </select>
+              </div>
+
+              <div class="flex-column-start">
+                <label for="disease">Doenças:</label>
+                <textarea
+                  name="disease"
+                  v-model="register.diseases"
+                  id="disease"
+                ></textarea>
+              </div>
+            </section>
+
+            <section class="section-box">
+              <div class="flex-column-start">
+                <label for="medication">Medicação:</label>
+                <textarea
+                  name="medication"
+                  v-model="register.medications"
+                  id="medication"
+                ></textarea>
+              </div>
+
+              <div class="flex-column-start">
+                <label for="drugs"
+                  >Tóxicos (álcool, fumo e drogas ilícitas):</label
+                >
+                <textarea
+                  name="drugs"
+                  v-model="register.drugs"
+                  id="drugs"
+                ></textarea>
+              </div>
+            </section>
+          </div>
+        </form>
+        <div class="button-container">
+          <button id="next">Finalizar</button>
         </div>
-
-        <div class="section-container">
-          <section class="section-box">
-            <div id="child-birth-type-container">
-              <label for="child-birth-type">Tipo de parto:</label>
-              <select name="child-birth-type" id="child-birth-type">
-                <option value="normal">normal</option>
-                <option value="cesariana">cesariana</option>
-              </select>
-            </div>
-
-            <div id="obstetrician-container">
-              <label for="obstetrician">Obstetra:</label>
-              <select name="obstetrician" id="obstetrician">
-                <option value="normal">normal</option>
-              </select>
-            </div>
-
-            <div id="disease-container">
-              <label for="disease">Doenças:</label>
-              <textarea
-                name="disease"
-                v-model="register.diseases"
-                id="disease"
-              ></textarea>
-            </div>
-          </section>
-
-          <section class="section-box">
-            <div id="medication-container">
-              <label for="medication">Medicação:</label>
-              <textarea
-                name="medication"
-                v-model="register.medications"
-                id="medication"
-              ></textarea>
-            </div>
-
-            <div id="drugs-container">
-              <label for="drugs"
-                >Tóxicos (álcool, fumo e drogas ilícitas):</label
-              >
-              <textarea
-                name="drugs"
-                v-model="register.drugs"
-                id="drugs"
-              ></textarea>
-            </div>
-          </section>
-        </div>
-      </form>
-      <div class="button-container">
-        <button id="next">Finalizar</button>
-      </div>
-    </ContentContainer>
+      </ContentContainer>
+    </BodyContainer>
   </div>
 </template>
 
 <script>
 import ContentContainer from "../components/ContentContainer";
+import BodyContainer from "../components/BodyContainer";
 
 export default {
   name: "registerDonorPostNatal",
   components: {
     ContentContainer,
+    BodyContainer
   },
   data() {
     return {};
@@ -86,16 +90,6 @@ export default {
 </script>
 
 <style>
-.register-donor-post-natal {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-
-  margin-top: 35px;
-  min-height: 75vh;
-}
-
 .register-donor-post-natal h1 {
   display: flex;
   justify-self: flex-start;
@@ -105,19 +99,6 @@ export default {
   width: 85vw;
 }
 
-/* .register-donor-post-natal .form-container {
-  display: flex;
-  flex-direction: column;
-
-  background-color: #fff;
-  border-radius: 30px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-  padding: 30px;
-  height: 68vh;
-  width: 83vw;
-} */
-
 .register-donor-post-natal form {
   display: flex;
   flex-direction: column;
@@ -126,12 +107,7 @@ export default {
   width: 80%;
 }
 
-.register-donor-post-natal #post-natal-title,
-.register-donor-post-natal #child-birth-type-container,
-.register-donor-post-natal #obstetrician-container,
-.register-donor-post-natal #disease-container,
-.register-donor-post-natal #medication-container,
-.register-donor-post-natal #drugs-container {
+.register-donor-post-natal .flex-column-start{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -196,7 +172,7 @@ export default {
   border: 2px solid rgb(97, 92, 92);
 }
 
-.register-donor-post-natal .form-container form hr {
+.register-donor-post-natal hr {
   width: 65%;
 
   border: 1px solid #575757;
