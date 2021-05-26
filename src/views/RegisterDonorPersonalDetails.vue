@@ -4,7 +4,7 @@
       <h1>CADASTRO DE DOADORA</h1>
       <ContentContainer>
         <form>
-          <div class="general-data-container">
+          <section class="general-data-container">
             <div class="input-group">
               <input
                 type="text"
@@ -42,9 +42,9 @@
                 placeholder="Nome da avó materna"
               />
             </div>
-          </div>
+          </section>
 
-          <div class="adress-container">
+          <section class="adress-container">
             <div id="adress-title">
               <h2>Endereço</h2>
               <hr />
@@ -102,11 +102,11 @@
                 />
               </div>
             </div>
-          </div>
+          </section>
         </form>
         <div class="button-container">
-          <button id="back">Voltar</button>
-          <button id="next" @click="mostrarDados">Avançar</button>
+          <button class="back">Voltar</button>
+          <button class="next" @click="mostrarDados">Avançar</button>
         </div>
       </ContentContainer>
     </BodyContainer>
@@ -152,6 +152,7 @@ export default {
 .register-donor-personal-details form {
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
 
   height: 61vh;
   width: 50%;
@@ -161,7 +162,7 @@ export default {
 .register-donor-personal-details .general-data-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
 
   width: 100%;
 }
@@ -186,6 +187,16 @@ export default {
   align-items: flex-start;
 }
 
+.register-donor-personal-details label {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.register-donor-personal-details label,
+.register-donor-personal-details h2 {
+  color: #000;
+}
+
 .register-donor-personal-details input {
   font-size: 20px;
   border-radius: 15px;
@@ -201,7 +212,7 @@ export default {
   border: 2px solid rgb(97, 92, 92);
 }
 
-.register-donor-personal-details .form-container form hr {
+.register-donor-personal-details hr {
   width: 100%;
 
   border: 1px solid #575757;
@@ -224,17 +235,15 @@ export default {
 }
 
 .register-donor-personal-details button {
-  border: 1px solid #7b7b7b;
+  border: none;
   cursor: pointer;
   font-size: 25px;
   outline: none;
   color: #fff;
+  border-radius: 10px;
 
   width: 16vw;
   height: 6vh;
-}
-
-.register-donor-personal-details button:active {
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  transition: 0.2s;
 }
 </style>

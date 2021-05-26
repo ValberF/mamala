@@ -60,7 +60,7 @@
           </div>
         </form>
         <div class="button-container">
-          <button id="next">Finalizar</button>
+          <button class="next">Finalizar</button>
         </div>
       </ContentContainer>
     </BodyContainer>
@@ -130,7 +130,8 @@ export default {
 
 .register-donor-post-natal label {
   font-size: 20px;
-  color: #7b7b7b;
+  color: #000;
+  font-weight: bold;
 
   margin-bottom: 5px;
 }
@@ -184,11 +185,12 @@ export default {
 }
 
 .register-donor-post-natal button {
-  border: 1px solid #7b7b7b;
+  border: none;
   cursor: pointer;
   font-size: 25px;
   outline: none;
   color: #fff;
+  border-radius: 10px;
 
   width: 16vw;
   height: 6vh;

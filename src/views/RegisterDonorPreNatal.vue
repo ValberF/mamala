@@ -80,8 +80,8 @@
           </div>
         </form>
         <div class="button-container">
-          <button id="back">Voltar</button>
-          <button id="next" @click="mostrarDados">Avançar</button>
+          <button class="back">Voltar</button>
+          <button class="next" @click="mostrarDados">Avançar</button>
         </div>
       </ContentContainer>
     </BodyContainer>
@@ -177,7 +177,8 @@ export default {
 .register-donor-pre-natal label,
 .register-donor-pre-natal p {
   font-size: 20px;
-  color: #7b7b7b;
+  font-weight: bold;
+  color: #000;
 }
 
 .register-donor-pre-natal textarea {
@@ -216,11 +217,12 @@ export default {
 }
 
 .register-donor-pre-natal button {
-  border: 1px solid #7b7b7b;
+  border: none;
   cursor: pointer;
   font-size: 25px;
   outline: none;
   color: #fff;
+  border-radius: 10px;
 
   width: 16vw;
   height: 6vh;

@@ -1,13 +1,13 @@
 <template>
   <div class="header">
-    <h1>MaMaLá</h1>
+    <div id="logo-container"></div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Header'
-}
+  name: "Header",
+};
 </script>
 
 <style>
@@ -17,16 +17,16 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  height: 75px;
-
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  text-shadow: 1px 1px 1px #777;
-  color: #fff;
-  background-color: #f2abb1;
 }
 
-.header h1 {
+#logo-container {
+  height: 150px;
+  width: 150px;
+
+  background-image: url('../assets/mamala.png');
+  background-size: 185%;
+  background-position: center;
+  
   cursor: pointer;
 }
 </style>

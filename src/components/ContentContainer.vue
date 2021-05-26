@@ -14,13 +14,14 @@ export default {
 .content-container {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 
-  background-color: #fff;
+  background-color: #92DED2;
   border-radius: 30px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
   padding: 30px;
-  height: 68vh;
+  min-height: 65vh;
   width: 83vw;
 }
 </style>

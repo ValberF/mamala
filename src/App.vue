@@ -19,7 +19,7 @@ export default {
 
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+@import url('https://fonts.googleapis.com/css2?family=Jaldi&display=swap');
 
 * {
   margin: 0;
@@ -27,13 +27,13 @@ export default {
 }
 
 #app {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Jaldi', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
 
-  background-color: #bbd5ed;
+  background-color: #fffff0;
   min-height: 100vh;
 }
 
@@ -50,11 +50,19 @@ export default {
   color: #42b983;
 }
 
-#back {
-  background-color: #DC6464;
+.back {
+  background-color: #BD2626;
 }
 
-#next {
-  background-color: #83D283;
+.next {
+  background-color: #445065;
+}
+
+.back:hover {
+  background-color: #8f1d1d;
+}
+
+.next:hover {
+  background-color: #5f708c;
 }
 </style>

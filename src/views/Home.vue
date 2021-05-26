@@ -6,8 +6,7 @@
       </Card>
 
       <Card>
-        <h2>SAIBA A UNIDADE MAIS PRÓXIMA DE VOCÊ!</h2>
-        <img src="../assets/maps.svg" id="maps" />
+        <div id="map"></div>
       </Card>
 
       <Card>
@@ -60,19 +59,26 @@ export default {
 .home {
   display: flex;
   justify-content: center;
+
+  height: 65vh;
 }
 
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto;
-  grid-gap: 80px;
-
-  margin-top: 35px;
+  grid-gap: 55px;
 }
 
-.home #maps {
-  height: 50%;
-  width: 50%;
+.home #map {
+  height: 100%;
+  width: 100%;
+
+  background-image: url('../assets/mapa.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  border-radius: 5px;
 }
 
 .home .bottle {
@@ -88,16 +94,12 @@ export default {
   width: 100%;
 }
 
-.home h2,
-.home h3 {
-  color: rgba(218, 110, 139, 0.864);
-}
-
 .home video {
-  width: 90%;
-  height: 70%;
+  width: 100%;
+  height: 100%;
 
   outline: none;
+  border-radius: 5px;
 }
 
 .home .icon-container {

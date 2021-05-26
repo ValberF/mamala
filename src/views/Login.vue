@@ -15,7 +15,7 @@
           </div>
         </div>
       </form>
-      <button>Entrar</button>
+      <button class="next">Entrar</button>
     </div>
   </div>
 </template>
@@ -32,8 +32,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-
-  min-height: 100vh;
+  
+  min-height: 75vh;
 }
 
 .login-container {
@@ -47,13 +47,7 @@ export default {
 
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  background-color: #f7b5bb;
-}
-
-.login-container h1,
-.login-container label,
-.login-container span {
-  color: #fff;
+  background-color: #92DED2;
 }
 
 .input-container {
@@ -88,25 +82,19 @@ export default {
 .input-container span {
   margin-top: 5px;
   font-size: 18px;
+
+  cursor: pointer;
 }
 
 .login-container button {
-  width: 10vw;
-  height: 50px;
-
-  border: 1px solid #7b7b7b;
+  border: none;
   cursor: pointer;
   font-size: 25px;
   outline: none;
   color: #fff;
-  background-color: #83d283;
-}
+  border-radius: 10px;
 
-.login-container button:active {
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  width: 10vw;
+  height: 50px;
 }
-
-/*.input-container input:active {
-    border: 1px solid #7b7b7b;
-}*/
 </style>

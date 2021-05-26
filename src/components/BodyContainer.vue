@@ -17,7 +17,6 @@ export default {
   align-items: center;
   justify-content: space-around;
 
-  margin-top: 35px;
   min-height: 75vh;
 }
 </style>
