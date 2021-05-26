@@ -56,13 +56,6 @@ export default {
 </script>
 
 <style>
-.home {
-  display: flex;
-  justify-content: center;
-
-  height: 65vh;
-}
-
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto;

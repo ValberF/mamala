@@ -1,18 +1,21 @@
 <template>
   <div id="app">
     <Header />
-    <Content/>
+    <Content />
+    <SideNav />
   </div>
 </template>
 
 <script>
 import Header from './templates/Header'
 import Content from './templates/Content'
+import SideNav from './components/SideNav'
 
 export default {
   components: {
     Header,
-    Content
+    Content,
+    SideNav
   }
 }
 </script>

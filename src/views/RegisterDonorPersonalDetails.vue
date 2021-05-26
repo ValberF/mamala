@@ -105,8 +105,7 @@
           </section>
         </form>
         <div class="button-container">
-          <button class="back">Voltar</button>
-          <button class="next" @click="mostrarDados">Avançar</button>
+          <button class="next" @click="mostrarDados">Finalizar</button>
         </div>
       </ContentContainer>
     </BodyContainer>
@@ -128,7 +127,8 @@ export default {
   },
   methods: {
     mostrarDados() {
-      console.log(this.register);
+      alert('Doadora cadastrada com sucesso!')
+      this.$router.push("donor-list");
     },
   },
   computed: {

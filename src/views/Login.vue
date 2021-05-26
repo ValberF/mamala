@@ -28,14 +28,6 @@ export default {
 </script>
 
 <style>
-.login {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-  min-height: 75vh;
-}
-
 .login-container {
   display: flex;
   justify-content: space-around;
@@ -47,7 +39,7 @@ export default {
 
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  background-color: #92DED2;
+  background-color: rgba(146, 222, 210, 0.5);
 }
 
 .input-container {

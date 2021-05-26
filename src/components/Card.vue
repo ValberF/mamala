@@ -30,6 +30,6 @@ export default {
 }
 
 .card:hover {
-  height: 34vh;
+  opacity: 0.8;
 }
 </style>

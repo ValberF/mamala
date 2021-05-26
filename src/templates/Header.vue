@@ -1,12 +1,21 @@
 <template>
   <div class="header">
-    <div id="logo-container"></div>
+    <div></div>
+    <router-link to="/">
+      <div id="logo-container"></div>
+    </router-link>
+    <i @click="openNav" class="fas fa-bars"></i>
   </div>
 </template>
 
 <script>
 export default {
   name: "Header",
+  methods: {
+    openNav() {
+      document.getElementById("sidenav").style.width = "250px";
+    }
+  }
 };
 </script>
 
@@ -15,8 +24,15 @@ export default {
   position: relative;
 
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+
+  padding: 0 25px 0 25px;
+}
+
+.header i {
+  cursor: pointer;
+  font-size: 30px;
 }
 
 #logo-container {

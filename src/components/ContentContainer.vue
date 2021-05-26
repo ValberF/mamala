@@ -16,7 +16,7 @@ export default {
   flex-direction: column;
   justify-content: space-between;
 
-  background-color: #92DED2;
+  background-color: rgba(146, 222, 210, 0.5);
   border-radius: 30px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 

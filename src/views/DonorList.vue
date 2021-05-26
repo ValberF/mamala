@@ -300,7 +300,7 @@ export default {
 .donor-list th {
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 5;
   background: #DFF0E6;
 }
 
@@ -319,7 +319,7 @@ td {
 }
 
 .donor-list tbody tr:nth-child(odd) {
-  background: #445065;
+  background: #495e82;
   color: #fff;
 }
 
