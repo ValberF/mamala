@@ -1,7 +1,7 @@
 <template>
-  <div class="register-donor-personal-details">
+  <div class="register-beneficiary">
     <BodyContainer>
-      <h1>CADASTRO DE DOADORA</h1>
+      <h1>CADASTRAR PONTO DE DISTRIBUIÇÃO</h1>
       <ContentContainer>
         <form>
           <section class="general-data-container">
@@ -9,28 +9,8 @@
               <input
                 type="text"
                 id="name"
-                v-model="mothersData.name"
-                placeholder="Nome completo"
-              />
-            </div>
-
-            <div class="input-group">
-              <div>
-                <label for="birth-mother">Data de Nascimento da mãe:</label>
-                <input
-                  id="birth-mother"
-                  v-model="mothersData.birthMother"
-                  type="date"
-                />
-              </div>
-            </div>
-
-            <div class="input-group">
-              <input
-                type="text"
-                id="grandma-name"
-                v-model="mothersData.grandmaName"
-                placeholder="Nome da avó materna"
+                v-model="beneficiaryData.name"
+                placeholder="Nome do local"
               />
             </div>
           </section>
@@ -45,7 +25,7 @@
               <input
                 type="text"
                 id="street"
-                v-model="mothersData.address.address_street"
+                v-model="beneficiaryData.street"
                 placeholder="Rua"
               />
             </div>
@@ -54,7 +34,7 @@
               <div>
                 <input
                   type="text"
-                  v-model="mothersData.address.address_district"
+                  v-model="beneficiaryData.district"
                   placeholder="Bairro"
                 />
               </div>
@@ -62,8 +42,8 @@
               <div>
                 <input
                   type="number"
-                  v-model="mothersData.address.address_number"
-                  placeholder="Número da casa"
+                  v-model="beneficiaryData.homeNumber"
+                  placeholder="Número"
                 />
               </div>
             </div>
@@ -71,7 +51,7 @@
             <div class="input-group">
               <input
                 type="text"
-                v-model="mothersData.address.address_reference"
+                v-model="beneficiaryData.reference"
                 placeholder="Ponto de referência"
               />
             </div>
@@ -80,15 +60,7 @@
               <div>
                 <input
                   type="text"
-                  v-model="mothersData.naturalness"
-                  placeholder="Naturalidade"
-                />
-              </div>
-
-              <div>
-                <input
-                  type="text"
-                  v-model="mothersData.phone"
+                  v-model="beneficiaryData.phone"
                   placeholder="Telefone/Celular"
                 />
               </div>
@@ -96,7 +68,7 @@
           </section>
         </form>
         <div class="button-container">
-          <button class="next" @click="donorList">Finalizar</button>
+          <button class="next" @click="mostrarDados">Finalizar</button>
         </div>
       </ContentContainer>
     </BodyContainer>
@@ -104,33 +76,24 @@
 </template>
 
 <script>
-import axios from "axios";
 import ContentContainer from "../components/ContentContainer";
 import BodyContainer from "../components/BodyContainer";
 
 export default {
-  name: "RegisterDonorPersonalDetails",
+  name: "RegisterBeneficiary",
   components: {
     ContentContainer,
     BodyContainer,
   },
   data() {
     return {
-      mothersData: {
-        address: {},
-      },
+      beneficiaryData: {},
     };
   },
   methods: {
-    donorList() {
-      axios
-        .post("http://localhost:5000/address", this.mothersData.address)
-        .then((res) => {
-          alert(res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    mostrarDados() {
+      alert("Doadora cadastrada com sucesso!");
+      this.$router.push("donor-list");
     },
   },
   computed: {},
@@ -138,7 +101,7 @@ export default {
 </script>
 
 <style>
-.register-donor-personal-details h1 {
+.register-beneficiary h1 {
   display: flex;
   justify-self: flex-start;
 
@@ -147,17 +110,17 @@ export default {
   width: 85vw;
 }
 
-.register-donor-personal-details form {
+.register-beneficiary form {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
 
-  height: 61vh;
+  height: 55vh;
   width: 50%;
 }
 
-.register-donor-personal-details .adress-container,
-.register-donor-personal-details .general-data-container {
+.register-beneficiary .adress-container,
+.register-beneficiary .general-data-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -165,38 +128,34 @@ export default {
   width: 100%;
 }
 
-.register-donor-personal-details .general-data-container {
-  height: 35%;
-}
-
-.register-donor-personal-details .adress-container {
+.register-beneficiary .adress-container {
   height: 55%;
 }
 
-.register-donor-personal-details #name,
-.register-donor-personal-details #street,
-.register-donor-personal-details #grandma-name {
+.register-beneficiary #name,
+.register-beneficiary #street,
+.register-beneficiary #grandma-name {
   width: 100%;
 }
 
-.register-donor-personal-details .adress-container #adress-title {
+.register-beneficiary .adress-container #adress-title {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.register-donor-personal-details label {
+.register-beneficiary label {
   font-size: 20px;
   font-weight: bold;
 }
 
-.register-donor-personal-details label,
-.register-donor-personal-details h2 {
+.register-beneficiary label,
+.register-beneficiary h2 {
   color: #000;
 }
 
-.register-donor-personal-details input {
-  font-size: 20px;
+.register-beneficiary input {
+  font-size: 18px;
   border-radius: 15px;
   outline: none;
   border: 1px solid #7b7b7b;
@@ -206,29 +165,33 @@ export default {
   padding: 7px;
 }
 
-.register-donor-personal-details hr {
+.register-beneficiary input:focus {
+  border: 2px solid rgb(97, 92, 92);
+}
+
+.register-beneficiary hr {
   width: 100%;
 
   border: 1px solid #575757;
 }
 
-.register-donor-personal-details .input-group {
+.register-beneficiary .input-group {
   display: flex;
   width: 100%;
   justify-content: space-between;
 }
 
-.register-donor-personal-details .input-group div {
+.register-beneficiary .input-group div {
   display: flex;
   flex-direction: column;
 }
 
-.register-donor-personal-details .button-container {
+.register-beneficiary .button-container {
   display: flex;
   justify-content: space-evenly;
 }
 
-.register-donor-personal-details button {
+.register-beneficiary button {
   border: none;
   cursor: pointer;
   font-size: 25px;

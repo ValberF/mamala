@@ -2,10 +2,13 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
-import registerDonorPersonalDetails from "../views/RegisterDonorPersonalDetails";
-import registerDonorPostNatal from "../views/RegisterDonorPostNatal";
-import registerDonorPreNatal from "../views/RegisterDonorPreNatal";
+import RegisterDonorPersonalDetails from "../views/RegisterDonorPersonalDetails";
+import RegisterDonorPostNatal from "../views/RegisterDonorPostNatal";
+import RegisterDonorPreNatal from "../views/RegisterDonorPreNatal";
+import RegisterBeneficiary from "../views/RegisterBeneficiary";
+import RegisterAdmin from "../views/RegisterAdmin";
 import DonorList from "../views/DonorList";
+import BeneficiaryList from "../views/BeneficiaryList";
 import DonorPage from "../views/DonorPage";
 
 Vue.use(VueRouter);
@@ -23,18 +26,18 @@ const routes = [
   },
   {
     path: "/register-donor-personal-details",
-    name: "registerDonorPersonalDetails",
-    component: registerDonorPersonalDetails,
+    name: "RegisterDonorPersonalDetails",
+    component: RegisterDonorPersonalDetails,
   },
   {
     path: "/register-donor-post-natal",
-    name: "registerDonorPostNatal",
-    component: registerDonorPostNatal,
+    name: "RegisterDonorPostNatal",
+    component: RegisterDonorPostNatal,
   },
   {
     path: "/register-donor-pre-natal",
-    name: "registerDonorPreNatal",
-    component: registerDonorPreNatal,
+    name: "RegisterDonorPreNatal",
+    component: RegisterDonorPreNatal,
   },
   {
     path: "/donor-list",
@@ -42,9 +45,24 @@ const routes = [
     component: DonorList,
   },
   {
+    path: "/beneficiary-list",
+    name: "BeneficiaryList",
+    component: BeneficiaryList,
+  },
+  {
     path: "/donor-page",
     name: "DonorPage",
     component: DonorPage,
+  },
+  {
+    path: "/register-beneficiary",
+    name: "RegisterBeneficiary",
+    component: RegisterBeneficiary,
+  },
+  {
+    path: "/register-admin",
+    name: "RegisterAdmin",
+    component: RegisterAdmin,
   },
   {
     path: "/about",

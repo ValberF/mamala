@@ -1,5 +1,5 @@
 <template>
-  <div class="content" @click="closeNav">
+  <div class="content">
     <router-view />
   </div>
 </template>
@@ -7,11 +7,6 @@
 <script>
 export default {
   name: "Content",
-  methods: {
-    closeNav() {
-      document.getElementById("sidenav").style.width = "0";
-    },
-  },
 };
 </script>
 
@@ -22,5 +17,4 @@ export default {
   align-items: center;
   min-height: 83vh;
 }
-
 </style>

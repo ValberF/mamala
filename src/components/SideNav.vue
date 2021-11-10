@@ -1,31 +1,28 @@
 <template>
-  <div class="sidenav" id="sidenav">
-    <i class="fas fa-times" @click="closeNav"></i>
-    <div class="link-container">
-      <router-link to="/">Início</router-link>
-    </div>
-    <div class="link-container">
-      <router-link to="/login">Login</router-link>
-    </div>
-    <div class="link-container">
-      <router-link to="/register-donor-personal-details"
-        >Cadastrar doadora</router-link
-      >
-    </div>
-    <div class="link-container">
-      <router-link to="/donor-list">Lista de doadoras</router-link>
-    </div>
+  <div :class="sideNavState" class="sidenav">
+    <i class="fas fa-times" @click="toggleMenu"></i>
+    <router-link class="link-container" to="/">Início</router-link>
+    <router-link class="link-container" to="/login">Login</router-link>
+    <router-link class="link-container" to="/register-donor-personal-details"
+      >Cadastrar doadora</router-link
+    >
+    <router-link class="link-container" to="/donor-list"
+      >Lista de doadoras</router-link
+    >
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "SideNav",
   methods: {
-    closeNav() {
-      document.getElementById("sidenav").style.width = "0";
+    toggleMenu() {
+      this.$store.commit("toggleMenu");
     },
   },
+  computed: mapState(["sideNavState"]),
 };
 </script>
 
@@ -36,7 +33,6 @@ export default {
   align-items: flex-start;
 
   height: 100%;
-  width: 0;
   position: fixed;
   z-index: 10;
   top: 0;
@@ -45,6 +41,14 @@ export default {
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 30px;
+}
+
+.close-sidenav {
+  width: 0;
+}
+
+.open-sidenav {
+  width: 250px;
 }
 
 .sidenav i {

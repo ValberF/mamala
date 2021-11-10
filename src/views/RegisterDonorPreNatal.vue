@@ -1,7 +1,7 @@
 <template>
   <div class="register-donor-pre-natal">
     <BodyContainer>
-      <h1>CADASTRO DE DOADORA</h1>
+      <h1>Sara Laura Marli Pereira</h1>
       <ContentContainer>
         <form>
           <div class="flex-column-start">
@@ -18,7 +18,7 @@
                   <input
                     type="radio"
                     value="1"
-                    v-model="register.preNatal"
+                    v-model="preNatalData.preNatal"
                     id="yes"
                     name="pre-natal-state"
                   />
@@ -29,7 +29,7 @@
                   <input
                     type="radio"
                     value="0"
-                    v-model="register.preNatal"
+                    v-model="preNatalData.preNatal"
                     id="no"
                     name="pre-natal-state"
                   />
@@ -41,7 +41,7 @@
                 <label for="exam">Exames:</label>
                 <textarea
                   name="exam"
-                  v-model="register.exams"
+                  v-model="preNatalData.exams"
                   id="exam"
                 ></textarea>
               </div>
@@ -50,7 +50,7 @@
                 <label for="disease">Doenças:</label>
                 <textarea
                   name="disease"
-                  v-model="register.diseases"
+                  v-model="preNatalData.diseases"
                   id="disease"
                 ></textarea>
               </div>
@@ -61,7 +61,7 @@
                 <label for="medication">Medicação:</label>
                 <textarea
                   name="medication"
-                  v-model="register.medications"
+                  v-model="preNatalData.medications"
                   id="medication"
                 ></textarea>
               </div>
@@ -72,7 +72,7 @@
                 >
                 <textarea
                   name="drugs"
-                  v-model="register.drugs"
+                  v-model="preNatalData.drugs"
                   id="drugs"
                 ></textarea>
               </div>
@@ -80,8 +80,8 @@
           </div>
         </form>
         <div class="button-container">
-          <button class="back">Voltar</button>
-          <button class="next" @click="mostrarDados">Avançar</button>
+          <button class="back" @click="back">Voltar</button>
+          <button class="next" @click="next">Avançar</button>
         </div>
       </ContentContainer>
     </BodyContainer>
@@ -93,23 +93,25 @@ import ContentContainer from "../components/ContentContainer";
 import BodyContainer from "../components/BodyContainer";
 
 export default {
-  name: "registerDonorPreNatal",
+  name: "RegisterDonorPreNatal",
   components: {
     ContentContainer,
     BodyContainer,
   },
   data() {
-    return {};
+    return {
+      preNatalData: {}
+    };
   },
   methods: {
-    mostrarDados() {
-      console.log(this.register);
+    back() {
+      this.$router.push("donor-list");
+    },
+    next() {
+      this.$router.push("register-donor-post-natal");
     },
   },
   computed: {
-    register() {
-      return this.$store.state.register;
-    },
   },
 };
 </script>
@@ -195,14 +197,6 @@ export default {
   padding: 5px;
   margin-top: 5px;
   border-radius: 15px;
-}
-
-.register-donor-pre-natal textarea:focus {
-  border: 2px solid rgb(97, 92, 92);
-}
-
-.register-donor-pre-natal input:focus {
-  border: 2px solid rgb(97, 92, 92);
 }
 
 .register-donor-pre-natal hr {

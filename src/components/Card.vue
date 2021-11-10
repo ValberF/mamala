@@ -20,9 +20,8 @@ export default {
   width: 23vw;
   height: 32vh;
 
-  box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   color: #000;
-
   border-radius: 5px;
   cursor: pointer;
   transition: 0.2s;

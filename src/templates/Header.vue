@@ -4,7 +4,7 @@
     <router-link to="/">
       <div id="logo-container"></div>
     </router-link>
-    <i @click="openNav" class="fas fa-bars"></i>
+    <i @click="toggleMenu" class="fas fa-bars"></i>
   </div>
 </template>
 
@@ -12,9 +12,11 @@
 export default {
   name: "Header",
   methods: {
-    openNav() {
-      document.getElementById("sidenav").style.width = "250px";
+    toggleMenu() {
+      this.$store.commit('toggleMenu')
     }
+  },
+  computed: {
   }
 };
 </script>

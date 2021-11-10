@@ -1,4 +1,4 @@
-<template>
+npm run serve<template>
   <div id="app">
     <Header />
     <Content />

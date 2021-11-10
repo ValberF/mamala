@@ -5,30 +5,52 @@
       <form action="">
         <div class="input-container">
           <div>
-            <label for="user">Usuário:</label>
-            <input type="text" id="user" />
+            <label for="user">E-mail:</label>
+            <input type="text" id="user" v-model="user.admin_email" />
           </div>
           <div>
             <label for="password">Senha:</label>
-            <input type="password" id="password" />
+            <input type="password" id="password" v-model="user.admin_password" />
             <span>Esqueceu sua senha?</span>
           </div>
         </div>
       </form>
-      <button class="next">Entrar</button>
+      <button class="next" @click="login">Entrar</button>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+import { baseApiUrl }  from "../global";
+
 export default {
   name: "Login",
-  methods: {},
+  data() {
+    return {
+      user: {},
+    };
+  },
+  methods: {
+    login() {
+      axios
+        .post(baseApiUrl + "/login", this.user)
+        .then((res) => {
+          this.$store.commit("setUser", res.data);
+          localStorage.setItem("__consulba_user", JSON.stringify(res.data));
+          this.$router.push({ path: "/" });
+          alert("logado")
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    },
+  },
 };
 </script>
 
 <style>
-.login-container {
+.login .login-container {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -42,7 +64,7 @@ export default {
   background-color: rgba(146, 222, 210, 0.5);
 }
 
-.input-container {
+.login .input-container {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -52,13 +74,13 @@ export default {
   height: 18vh;
 }
 
-.input-container div {
+.login .input-container div {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.input-container input {
+.login .input-container input {
   border-radius: 5px;
   font-size: 20px;
   padding: 5px;
@@ -67,18 +89,14 @@ export default {
   outline: none;
 }
 
-.input-container input:focus {
-  border: 2px solid rgb(97, 92, 92);
-}
-
-.input-container span {
+.login .input-container span {
   margin-top: 5px;
   font-size: 18px;
 
   cursor: pointer;
 }
 
-.login-container button {
+.login .login-container button {
   border: none;
   cursor: pointer;
   font-size: 25px;

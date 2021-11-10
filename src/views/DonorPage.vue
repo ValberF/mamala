@@ -1,45 +1,36 @@
 <template>
   <div class="donor-page">
-    <h1>Raimunda Mariah Débora Vieira</h1>
+    <h1>Sara Laura Marli Pereira</h1>
     <ContentContainer>
       <div class="table-container">
         <table>
           <thead>
             <tr>
-              <th width="36%">Nome</th>
-              <th width="17%">CPF</th>
-              <th width="17%">Contato</th>
-              <th width="25%">E-mail</th>
-              <th width="5%"></th>
+              <th width="40%">Data da doação</th>
+              <th width="40%">Quantidade doada</th>
+              <th width="20%">Status da doação</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td width="36%">Valber Francisco dos Santos</td>
-              <td width="17%">071.090.015-55</td>
-              <td width="17%">(73) 98835-4652</td>
-              <td width="25%">valberfrsantos@gmail.com</td>
-              <td width="5%" class="icon-class">
-                <i class="fas fa-folder-open"></i>
-              </td>
+              <td width="40%">17/05/2021</td>
+              <td width="40%">100 ml</td>
+              <td width="20%" style="color: yellow">Aguardando cultura</td>
             </tr>
             <tr>
-              <td width="36%">Valber Francisco dos Santos</td>
-              <td width="17%">071.090.015-55</td>
-              <td width="17%">(73) 98835-4652</td>
-              <td width="25%">valberfrsantos@gmail.com</td>
-              <td width="5%" class="icon-class">
-                <i class="fas fa-folder-open"></i>
-              </td>
+              <td width="40%">02/05/2021</td>
+              <td width="40%">100 ml</td>
+              <td width="20%" style="color: red">Indeferido</td>
             </tr>
             <tr>
-              <td width="36%">Valber Francisco dos Santos</td>
-              <td width="17%">071.090.015-55</td>
-              <td width="17%">(73) 98835-4652</td>
-              <td width="25%">valberfrsantos@gmail.com</td>
-              <td width="5%" class="icon-class">
-                <i class="fas fa-folder-open"></i>
-              </td>
+              <td width="40%">03/02/2020</td>
+              <td width="40%">100 ml</td>
+              <td width="20%" style="color: green">Deferido</td>
+            </tr>
+            <tr>
+              <td width="40%">20/01/2020</td>
+              <td width="40%">100 ml</td>
+              <td width="20%" style="color: green">Deferido</td>
             </tr>
           </tbody>
         </table>
@@ -69,6 +60,7 @@ export default {
       return this.$store.state.register;
     },
   },
+  mounted() {},
 };
 </script>
 
@@ -116,18 +108,8 @@ td {
 }
 
 .donor-page tbody tr:nth-child(odd) {
-  background: rgb(196, 188, 188);
+  background: #495e82;
   color: #fff;
-}
-
-.donor-page .icon-class {
-  cursor: pointer;
-  font-size: 20px;
-  transition: 0.2s;
-}
-
-.donor-page .icon-class:hover {
-  font-size: 25px;
 }
 
 /* width */
@@ -137,16 +119,16 @@ td {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #888;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="register-donor-post-natal">
     <BodyContainer>
-      <h1>CADASTRO DE DOADORA</h1>
+      <h1>Sara Laura Marli Pereira</h1>
       <ContentContainer>
         <form>
           <div id="post-natal-title" class="flex-column-start">
@@ -30,7 +30,7 @@
                 <label for="disease">Doenças:</label>
                 <textarea
                   name="disease"
-                  v-model="register.diseases"
+                  v-model="postNatalData.diseases"
                   id="disease"
                 ></textarea>
               </div>
@@ -41,7 +41,7 @@
                 <label for="medication">Medicação:</label>
                 <textarea
                   name="medication"
-                  v-model="register.medications"
+                  v-model="postNatalData.medications"
                   id="medication"
                 ></textarea>
               </div>
@@ -52,7 +52,7 @@
                 >
                 <textarea
                   name="drugs"
-                  v-model="register.drugs"
+                  v-model="postNatalData.drugs"
                   id="drugs"
                 ></textarea>
               </div>
@@ -60,6 +60,7 @@
           </div>
         </form>
         <div class="button-container">
+          <button class="back" @click="back">Voltar</button>
           <button class="next">Finalizar</button>
         </div>
       </ContentContainer>
@@ -72,15 +73,21 @@ import ContentContainer from "../components/ContentContainer";
 import BodyContainer from "../components/BodyContainer";
 
 export default {
-  name: "registerDonorPostNatal",
+  name: "RegisterDonorPostNatal",
   components: {
     ContentContainer,
-    BodyContainer
+    BodyContainer,
   },
   data() {
-    return {};
+    return {
+      postNatalData: {}
+    };
   },
-  methods: {},
+  methods: {
+    back() {
+      this.$router.push("register-donor-pre-natal");
+    },
+  },
   computed: {
     register() {
       return this.$store.state.register;
@@ -107,7 +114,7 @@ export default {
   width: 80%;
 }
 
-.register-donor-post-natal .flex-column-start{
+.register-donor-post-natal .flex-column-start {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -162,15 +169,6 @@ export default {
   padding: 5px;
   margin-top: 5px;
   border-radius: 15px;
-}
-
-.register-donor-post-natal textarea:focus,
-.register-donor-post-natal select:focus {
-  border: 2px solid rgb(97, 92, 92);
-}
-
-.register-donor-post-natal input:focus {
-  border: 2px solid rgb(97, 92, 92);
 }
 
 .register-donor-post-natal hr {
