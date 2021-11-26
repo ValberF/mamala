@@ -20,48 +20,128 @@ const routes = [
     component: Home,
   },
   {
-    path: "/login",
+    path: "/Login",
     name: "Login",
     component: Login,
   },
   {
     path: "/register-donor-personal-details",
     name: "RegisterDonorPersonalDetails",
+    beforeEnter(to, from, next) {
+      // check vuex store //
+      if (localStorage.getItem("__user")) {
+        next();
+      } else {
+        next({
+          name: "Login", // back to safety route //
+        });
+      }
+    },
     component: RegisterDonorPersonalDetails,
   },
   {
     path: "/register-donor-post-natal",
     name: "RegisterDonorPostNatal",
+    beforeEnter(to, from, next) {
+      // check vuex store //
+      if (localStorage.getItem("__user")) {
+        next();
+      } else {
+        next({
+          name: "Login", // back to safety route //
+        });
+      }
+    },
     component: RegisterDonorPostNatal,
   },
   {
     path: "/register-donor-pre-natal",
     name: "RegisterDonorPreNatal",
+    beforeEnter(to, from, next) {
+      // check vuex store //
+      if (localStorage.getItem("__user")) {
+        next();
+      } else {
+        next({
+          name: "Login", // back to safety route //
+        });
+      }
+    },
     component: RegisterDonorPreNatal,
   },
   {
     path: "/donor-list",
     name: "DonorList",
+    beforeEnter(to, from, next) {
+      // check vuex store //
+      if (localStorage.getItem("__user")) {
+        next();
+      } else {
+        next({
+          name: "Login", // back to safety route //
+        });
+      }
+    },
     component: DonorList,
   },
   {
     path: "/beneficiary-list",
     name: "BeneficiaryList",
+    beforeEnter(to, from, next) {
+      // check vuex store //
+      if (localStorage.getItem("__user")) {
+        next();
+      } else {
+        next({
+          name: "Login", // back to safety route //
+        });
+      }
+    },
     component: BeneficiaryList,
   },
   {
     path: "/donor-page",
     name: "DonorPage",
+    beforeEnter(to, from, next) {
+      // check vuex store //
+      if (localStorage.getItem("__user")) {
+        next();
+      } else {
+        next({
+          name: "Login", // back to safety route //
+        });
+      }
+    },
     component: DonorPage,
   },
   {
     path: "/register-beneficiary",
     name: "RegisterBeneficiary",
+    beforeEnter(to, from, next) {
+      // check vuex store //
+      if (localStorage.getItem("__user")) {
+        next();
+      } else {
+        next({
+          name: "Login", // back to safety route //
+        });
+      }
+    },
     component: RegisterBeneficiary,
   },
   {
     path: "/register-admin",
     name: "RegisterAdmin",
+    beforeEnter(to, from, next) {
+      // check vuex store //
+      if (localStorage.getItem("__user")) {
+        next();
+      } else {
+        next({
+          name: "Login", // back to safety route //
+        });
+      }
+    },
     component: RegisterAdmin,
   },
   {

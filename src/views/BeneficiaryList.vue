@@ -10,64 +10,23 @@
                 <th width="30%">Nome</th>
                 <th width="15%">Contato</th>
                 <th width="35%">Endereço</th>
+                <th width="10%">Estoque</th>
                 <th width="10%" style="text-align: center">Distribuir</th>
               </tr>
             </thead>
             <tbody>
-              <!-- <tr
+              <tr
                 class="beneficiary-list-container"
-                v-for="value in listDonor"
+                v-for="value in listBeneficiary"
                 :key="value.donor_id"
               >
-                <td width="34%">{{ value.donor_name }}</td>
-                <td width="15%">{{ value.donor_birthDate }}</td>
-                <td width="15%">{{ value.donor_phoneNumber }}</td>
-                <td width="22%">{{ value.donor_grandmother }}</td>
-                <td width="6%" class="icon-class" @click="newPregnancy">
+                <td width="30%">{{ value.beneficiary_name }}</td>
+                <td width="15%">{{ value.beneficiary_phoneNumber }}</td>
+                <td width="35%">{{ value.address }}</td>
+                <td width="10%">10ml</td>
+                <td width="10%" class="icon-class">
                   <i class="fas fa-plus-circle"></i>
                 </td>
-                <td width="6%" class="icon-class">
-                  <i class="fas fa-plus-circle"></i>
-                </td>
-                <td width="6%" class="icon-class">
-                  <i class="fas fa-folder-open"></i>
-                </td>
-              </tr> -->
-              <tr>
-                <td width="30%">Corpo de Bombeiros</td>
-                <td width="15%">(73) 3612-6230</td>
-                <td width="35%">R. Dois Conjunto Urbis I, 926-972 - Jardim Primavera</td>
-                <td width="10%" class="icon-class"><i class="fas fa-plus-circle"></i></td>
-              </tr>
-              <tr>
-                <td width="30%">UBS Jose Edites </td>
-                <td width="15%">(73) 3617-7550</td>
-                <td width="35%">R. Floresta, 64 - São Caetano</td>
-                <td width="10%" class="icon-class"><i class="fas fa-plus-circle"></i></td>
-              </tr>
-              <tr>
-                <td width="30%">UBS Alberto Teixeira Barreto</td>
-                <td width="15%">(73) 3215-6963</td>
-                <td width="35%">R. Santa Rita, 442 - Califórnia</td>
-                <td width="10%" class="icon-class"><i class="fas fa-plus-circle"></i></td>
-              </tr>
-              <tr>
-                <td width="30%">UBS Dilson Cordier Monte Libano</td>
-                <td width="15%">(73) 98669-2385</td>
-                <td width="35%">R. 1 Lot Monte Libano, 261 - Castalia</td>
-                <td width="10%" class="icon-class"><i class="fas fa-plus-circle"></i></td>
-              </tr>
-              <tr>
-                <td width="30%">UBS Dr Calixto Midlej</td>
-                <td width="15%">(73) 3616-1882</td>
-                <td width="35%">42, R. e, 2 - Nova Itabuna</td>
-                <td width="10%" class="icon-class"><i class="fas fa-plus-circle"></i></td>
-              </tr>
-              <tr>
-                <td width="30%">Unidade De Saude Da Familia Lavignia Magalhaes</td>
-                <td width="15%">(73) 99785-7400</td>
-                <td width="35%">R. Aurora, 267-311 - Nossa Sra. da Conceição</td>
-                <td width="10%" class="icon-class"><i class="fas fa-plus-circle"></i></td>
               </tr>
             </tbody>
           </table>
@@ -90,15 +49,29 @@ export default {
   },
   data() {
     return {
-      listDonor: [],
+      listBeneficiary: [],
     };
   },
   methods: {
     showBeneficiarys() {
       axios
-        .get("http://localhost:5000/donor")
+        .get("http://localhost:5000/beneficiary")
         .then((res) => {
-          this.listDonor = res.data;
+          this.listBeneficiary = res.data;
+          for (let i = 0; i < res.data.length; i++) {
+            axios
+              .get(
+                `http://localhost:5000/address/${this.listBeneficiary[i].address_id}`
+              )
+              .then((res) => {
+                this.listBeneficiary[i].address =
+                  res.data.address_street +
+                  ", " +
+                  res.data.address_number +
+                  ", " +
+                  res.data.address_district;
+              });
+          }
         })
         .catch((err) => {
           console.log(err);

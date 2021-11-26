@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import axios from "axios"
+import axios from "axios";
 
 Vue.use(Vuex);
 
@@ -8,6 +8,10 @@ export default new Vuex.Store({
   state: {
     sideNavState: "close-sidenav",
     user: null,
+    isVisible: false,
+    actualDonor: {
+      
+    },
   },
   mutations: {
     toggleMenu(state) {

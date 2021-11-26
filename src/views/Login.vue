@@ -37,7 +37,7 @@ export default {
         .post(baseApiUrl + "/login", this.user)
         .then((res) => {
           this.$store.commit("setUser", res.data);
-          localStorage.setItem("__consulba_user", JSON.stringify(res.data));
+          localStorage.setItem("__user", JSON.stringify(res.data));
           this.$router.push({ path: "/" });
           alert("logado")
         })

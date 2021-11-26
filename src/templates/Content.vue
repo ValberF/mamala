@@ -15,6 +15,8 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  justify-self: flex-start;
+
   min-height: 83vh;
 }
 </style>

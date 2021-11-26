@@ -9,6 +9,12 @@
     <router-link class="link-container" to="/donor-list"
       >Lista de doadoras</router-link
     >
+    <router-link class="link-container" to="/register-beneficiary"
+      >Cadastrar ponto de distribuição</router-link
+    >
+    <router-link class="link-container" to="/beneficiary-list"
+      >Lista de pontos de distribuição</router-link
+    >
   </div>
 </template>
 
@@ -30,7 +36,6 @@ export default {
 .sidenav {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
 
   height: 100%;
   position: fixed;
@@ -48,7 +53,7 @@ export default {
 }
 
 .open-sidenav {
-  width: 250px;
+  width: 30vw;
 }
 
 .sidenav i {

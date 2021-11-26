@@ -9,7 +9,7 @@
               <input
                 type="text"
                 id="name"
-                v-model="beneficiaryData.name"
+                v-model="beneficiaryData.beneficiary_name"
                 placeholder="Nome do local"
               />
             </div>
@@ -25,7 +25,7 @@
               <input
                 type="text"
                 id="street"
-                v-model="beneficiaryData.street"
+                v-model="address.address_street"
                 placeholder="Rua"
               />
             </div>
@@ -34,7 +34,7 @@
               <div>
                 <input
                   type="text"
-                  v-model="beneficiaryData.district"
+                  v-model="address.address_district"
                   placeholder="Bairro"
                 />
               </div>
@@ -42,7 +42,7 @@
               <div>
                 <input
                   type="number"
-                  v-model="beneficiaryData.homeNumber"
+                  v-model="address.address_number"
                   placeholder="Número"
                 />
               </div>
@@ -51,7 +51,7 @@
             <div class="input-group">
               <input
                 type="text"
-                v-model="beneficiaryData.reference"
+                v-model="address.address_reference"
                 placeholder="Ponto de referência"
               />
             </div>
@@ -60,7 +60,7 @@
               <div>
                 <input
                   type="text"
-                  v-model="beneficiaryData.phone"
+                  v-model="beneficiaryData.beneficiary_phoneNumber"
                   placeholder="Telefone/Celular"
                 />
               </div>
@@ -68,7 +68,7 @@
           </section>
         </form>
         <div class="button-container">
-          <button class="next" @click="mostrarDados">Finalizar</button>
+          <button class="next" @click="registerBeneficiary">Finalizar</button>
         </div>
       </ContentContainer>
     </BodyContainer>
@@ -78,6 +78,7 @@
 <script>
 import ContentContainer from "../components/ContentContainer";
 import BodyContainer from "../components/BodyContainer";
+import axios from "axios";
 
 export default {
   name: "RegisterBeneficiary",
@@ -88,12 +89,31 @@ export default {
   data() {
     return {
       beneficiaryData: {},
+      address: {},
     };
   },
   methods: {
-    mostrarDados() {
-      alert("Doadora cadastrada com sucesso!");
-      this.$router.push("donor-list");
+    registerBeneficiary() {
+      axios
+        .post("http://localhost:5000/address", this.address)
+        .then((res) => {
+          this.beneficiaryData.address_id = res.data.address[0];
+          axios
+            .post("http://localhost:5000/beneficiary", this.beneficiaryData)
+            .then((res) => {
+              const stock = {
+                beneficiary_id: res.data.beneficiary[0],
+                stock_amount: 0,
+              };
+
+              axios.post("http://localhost:5000/stock", stock).then(() => {
+                this.$router.push({ path: "beneficiary-list" });
+              })
+            });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
   computed: {},

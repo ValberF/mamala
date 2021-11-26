@@ -9,7 +9,7 @@
               <input
                 type="text"
                 id="name"
-                v-model="mothersData.name"
+                v-model="mothersData.donor_name"
                 placeholder="Nome completo"
               />
             </div>
@@ -19,7 +19,7 @@
                 <label for="birth-mother">Data de Nascimento da mãe:</label>
                 <input
                   id="birth-mother"
-                  v-model="mothersData.birthMother"
+                  v-model="mothersData.donor_birthDate"
                   type="date"
                 />
               </div>
@@ -29,7 +29,7 @@
               <input
                 type="text"
                 id="grandma-name"
-                v-model="mothersData.grandmaName"
+                v-model="mothersData.donor_grandmother"
                 placeholder="Nome da avó materna"
               />
             </div>
@@ -45,7 +45,7 @@
               <input
                 type="text"
                 id="street"
-                v-model="mothersData.address.address_street"
+                v-model="address.address_street"
                 placeholder="Rua"
               />
             </div>
@@ -54,7 +54,7 @@
               <div>
                 <input
                   type="text"
-                  v-model="mothersData.address.address_district"
+                  v-model="address.address_district"
                   placeholder="Bairro"
                 />
               </div>
@@ -62,7 +62,7 @@
               <div>
                 <input
                   type="number"
-                  v-model="mothersData.address.address_number"
+                  v-model="address.address_number"
                   placeholder="Número da casa"
                 />
               </div>
@@ -71,7 +71,7 @@
             <div class="input-group">
               <input
                 type="text"
-                v-model="mothersData.address.address_reference"
+                v-model="address.address_reference"
                 placeholder="Ponto de referência"
               />
             </div>
@@ -80,7 +80,7 @@
               <div>
                 <input
                   type="text"
-                  v-model="mothersData.naturalness"
+                  v-model="mothersData.donor_naturalness"
                   placeholder="Naturalidade"
                 />
               </div>
@@ -88,7 +88,7 @@
               <div>
                 <input
                   type="text"
-                  v-model="mothersData.phone"
+                  v-model="mothersData.donor_phoneNumber"
                   placeholder="Telefone/Celular"
                 />
               </div>
@@ -96,7 +96,7 @@
           </section>
         </form>
         <div class="button-container">
-          <button class="next" @click="donorList">Finalizar</button>
+          <button class="next" @click="registerDonor">Finalizar</button>
         </div>
       </ContentContainer>
     </BodyContainer>
@@ -116,17 +116,26 @@ export default {
   },
   data() {
     return {
-      mothersData: {
-        address: {},
-      },
+      mothersData: {},
+      address: {},
     };
   },
   methods: {
-    donorList() {
+    registerDonor() {
       axios
-        .post("http://localhost:5000/address", this.mothersData.address)
+        .post("http://localhost:5000/address", this.address)
         .then((res) => {
-          alert(res);
+          let admin = localStorage.getItem("__user");
+          admin = JSON.parse(admin);
+          this.mothersData.address_id = res.data.address[0];
+          this.mothersData.admin_id = admin.admin_id;
+          console.log(this.mothersData);
+          console.log(JSON.stringify(this.mothersData));
+          axios
+            .post("http://localhost:5000/donor", this.mothersData)
+            .then(() => {
+              this.$router.push({ path: "donor-list" });
+            });
         })
         .catch((err) => {
           console.log(err);

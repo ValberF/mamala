@@ -11,31 +11,6 @@
 
           <div class="section-container">
             <section class="section-box">
-              <div>
-                <p>Pré-Natal:</p>
-
-                <div>
-                  <input
-                    type="radio"
-                    value="1"
-                    v-model="preNatalData.preNatal"
-                    id="yes"
-                    name="pre-natal-state"
-                  />
-                  <label for="yes">Sim</label>
-                </div>
-
-                <div>
-                  <input
-                    type="radio"
-                    value="0"
-                    v-model="preNatalData.preNatal"
-                    id="no"
-                    name="pre-natal-state"
-                  />
-                  <label for="no">Não</label>
-                </div>
-              </div>
 
               <div class="flex-column-start">
                 <label for="exam">Exames:</label>
