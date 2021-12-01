@@ -1,15 +1,28 @@
 <template>
-  <div v-if="isVisible" class="modal">
+  <div v-if="isVisible.status" class="modal">
     <div class="modal-container">
       <div>
-        <h1>{{ actualDonor.donor_name }}</h1>
+        <h1>{{ actualDonor.donor_name || "Distribuição" }}</h1>
         <form action>
           <input
             type="number"
             id="amount"
             placeholder="Quantidade a ser doada"
-            v-model="donorAmount"
+            v-model="amount"
           />
+          <select
+            v-if="isVisible.modalType == 'beneficiary'"
+            name="beneficiarys"
+            v-model="beneficiaryId"
+            id="beneficiarys"
+          >
+            <option
+              v-for="value in listBeneficiary"
+              :key="value.beneficiary_id"
+              :value="value.beneficiary_id"
+              >{{ value.beneficiary_name }}</option
+            >
+          </select>
         </form>
         <button class="next" @click="donate">Doar</button>
       </div>
@@ -25,33 +38,81 @@ export default {
   name: "Modal",
   data() {
     return {
-      donorAmount: Number,
+      amount: Number,
+      listBeneficiary: [],
+      beneficiaryId: Number,
     };
   },
   methods: {
     closeModal() {
-      this.$store.state.isVisible = false;
+      this.$store.state.isVisible.status = false;
     },
     donate() {
-      let today = new Date();
-      let dd = String(today.getDate()).padStart(2, "0");
-      let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-      let yyyy = today.getFullYear();
-      today = yyyy + "-" + mm + "-" + dd;
+      if (this.isVisible.modalType == "donor") {
+        let today = new Date();
+        let dd = String(today.getDate()).padStart(2, "0");
+        let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+        let yyyy = today.getFullYear();
+        today = yyyy + "-" + mm + "-" + dd;
 
-      const donation = {
-        donor_id: this.actualDonor.donor_id,
-        donation_amount: this.donorAmount,
-        donation_date: today,
-        donation_status: "Aguardando cultura",
-      };
+        const donation = {
+          donor_id: this.$store.state.actualDonor.donor_id,
+          donation_amount: this.amount,
+          donation_date: today,
+          donation_status: "Aguardando cultura",
+        };
 
-      axios.post('http://localhost:5000/donation', donation).then(() => {
-        axios.get('http://localhost:5000/stock').then( res => {
-          let stockAmount = Number(this.donorAmount) + Number(res.data[1].stock_amount)
-          axios.put('http://localhost:5000/stock/2', { stock_amount: stockAmount })
-        })
-      })
+        axios.post("http://localhost:5000/donation", donation).then(() => {
+          axios
+            .get("http://localhost:5000/stock")
+            .then((res) => {
+              let stockAmount =
+                Number(this.amount) + Number(res.data[0].stock_amount);
+              axios.put("http://localhost:5000/stock/1", {
+                stock_amount: stockAmount,
+              });
+            })
+            .then(() => {
+              this.$store.state.isVisible.status = false;
+            });
+        });
+      } else {
+        axios.get("http://localhost:5000/stock").then((res) => {
+          let stockAmount =
+            Number(this.amount) +
+            Number(res.data[this.beneficiaryId - 1].stock_amount);
+          axios
+            .put(`http://localhost:5000/stock/${this.beneficiaryId}`, {
+              stock_amount: stockAmount,
+            })
+            .then(() => {
+              axios
+                .get(
+                  `http://localhost:5000/stock/${this.actualBeneficiary.beneficiary_id}`
+                )
+                .then((res) => {
+                  if (this.amount <= res.data.stock_amount) {
+                    stockAmount =
+                      Number(res.data.stock_amount) - Number(this.amount);
+                  }
+                  axios.put(
+                    `http://localhost:5000/stock/${this.actualBeneficiary.beneficiary_id}`,
+                    {
+                      stock_amount: stockAmount,
+                    }
+                  );
+                })
+                .then(() => {
+                  this.$store.state.isVisible.status = false;
+                });
+            });
+        });
+      }
+    },
+    showBeneficiarys() {
+      axios.get("http://localhost:5000/beneficiary").then((res) => {
+        this.listBeneficiary = res.data;
+      });
     },
   },
   computed: {
@@ -61,6 +122,12 @@ export default {
     actualDonor() {
       return this.$store.state.actualDonor;
     },
+    actualBeneficiary() {
+      return this.$store.state.actualBeneficiary;
+    },
+  },
+  mounted() {
+    this.showBeneficiarys();
   },
 };
 </script>
@@ -103,6 +170,13 @@ export default {
   justify-content: space-between;
 
   height: 60%;
+}
+
+.modal form {
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  justify-content: space-around;
 }
 
 .modal #overlay {

@@ -15,6 +15,9 @@
     <router-link class="link-container" to="/beneficiary-list"
       >Lista de pontos de distribuição</router-link
     >
+    <router-link class="link-container" to="/register-obstetrician"
+      >Cadastrar Obstetra</router-link
+    >
   </div>
 </template>
 

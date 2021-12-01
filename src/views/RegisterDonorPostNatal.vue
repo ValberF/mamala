@@ -1,7 +1,7 @@
 <template>
   <div class="register-donor-post-natal">
     <BodyContainer>
-      <h1>Sara Laura Marli Pereira</h1>
+      <h1>{{ actualDonor.donor_name }}</h1>
       <ContentContainer>
         <form>
           <div id="post-natal-title" class="flex-column-start">
@@ -13,16 +13,29 @@
             <section class="section-box">
               <div class="flex-column-start">
                 <label for="child-birth-type">Tipo de parto:</label>
-                <select name="child-birth-type" id="child-birth-type">
-                  <option value="normal">normal</option>
-                  <option value="cesariana">cesariana</option>
+                <select
+                  name="child-birth-type"
+                  v-model="postNatalData.postnatal_typeBirth"
+                  id="child-birth-type"
+                >
+                  <option value="0">normal</option>
+                  <option value="1">cesariana</option>
                 </select>
               </div>
 
               <div class="flex-column-start">
                 <label for="obstetrician">Obstetra:</label>
-                <select name="obstetrician" id="obstetrician">
-                  <option value="normal">normal</option>
+                <select
+                  v-model="postNatalData.obstetrician_id"
+                  name="obstetrician"
+                  id="obstetrician"
+                >
+                  <option
+                    v-for="value in obstetricianList"
+                    :key="value.obstetrician_id"
+                    :value="value.obstetrician_id"
+                    >{{ value.obstetrician_name }}</option
+                  >
                 </select>
               </div>
 
@@ -30,7 +43,7 @@
                 <label for="disease">Doenças:</label>
                 <textarea
                   name="disease"
-                  v-model="postNatalData.diseases"
+                  v-model="postNatalData.postnatal_disease"
                   id="disease"
                 ></textarea>
               </div>
@@ -41,7 +54,7 @@
                 <label for="medication">Medicação:</label>
                 <textarea
                   name="medication"
-                  v-model="postNatalData.medications"
+                  v-model="postNatalData.postnatal_medication"
                   id="medication"
                 ></textarea>
               </div>
@@ -52,16 +65,31 @@
                 >
                 <textarea
                   name="drugs"
-                  v-model="postNatalData.drugs"
+                  v-model="postNatalData.postnatal_toxic"
                   id="drugs"
                 ></textarea>
+              </div>
+            </section>
+
+            <section class="section-box">
+              <div class="flex-column-start">
+                <label for="medication">Local feito o pós-natal:</label>
+                <input type="text" v-model="postNatalData.postnatal_local" />
+              </div>
+
+              <div class="flex-column-start">
+                <label for="drugs">Data de Nascimento do bebê:</label>
+                <input
+                  type="date"
+                  v-model="postNatalData.postnatal_birthDate"
+                />
               </div>
             </section>
           </div>
         </form>
         <div class="button-container">
           <button class="back" @click="back">Voltar</button>
-          <button class="next">Finalizar</button>
+          <button class="next" @click="next">Finalizar</button>
         </div>
       </ContentContainer>
     </BodyContainer>
@@ -71,6 +99,8 @@
 <script>
 import ContentContainer from "../components/ContentContainer";
 import BodyContainer from "../components/BodyContainer";
+import axios from "axios";
+import { baseApiUrl } from "../global";
 
 export default {
   name: "RegisterDonorPostNatal",
@@ -80,18 +110,46 @@ export default {
   },
   data() {
     return {
-      postNatalData: {}
+      postNatalData: {},
+      obstetricianList: [],
+      obstetricianId: Number,
     };
   },
   methods: {
     back() {
       this.$router.push("register-donor-pre-natal");
     },
+    next() {
+      axios
+        .post(baseApiUrl + "/prenatal", this.prenatal)
+        .then((res) => {
+          this.postNatalData.prenatal_id = res.data.prenatal[0];
+          this.postNatalData.donor_id = this.actualDonor.donor_id;
+          axios.post(baseApiUrl + "/postnatal", this.postNatalData);
+        })
+        .then(() => {
+          this.$router.push({ path: "/donor-list" });
+        });
+    },
+    getObstetrician() {
+      axios.get(baseApiUrl + "/obstetrician").then((res) => {
+        this.obstetricianList = res.data;
+      });
+    },
   },
   computed: {
     register() {
       return this.$store.state.register;
     },
+    actualDonor() {
+      return this.$store.state.actualDonor;
+    },
+    prenatal() {
+      return this.$store.state.prenatal;
+    },
+  },
+  mounted() {
+    this.getObstetrician();
   },
 };
 </script>
@@ -143,20 +201,21 @@ export default {
   margin-bottom: 5px;
 }
 
-.register-donor-post-natal select {
+.register-donor-post-natal select,
+.register-donor-post-natal input {
   font-size: 20px;
   outline: none;
   border: 1px solid #7b7b7b;
   background-color: #f2f2f2;
   color: #6b6767bf;
+  border-radius: 10px;
 
   width: 13vw;
-
-  padding: 4px;
+  padding: 7px;
 }
 
 .register-donor-post-natal textarea {
-  font-size: 15px;
+  font-size: 19px;
   color: #6b6767bf;
   background-color: #f2f2f2;
   border-color: #7b7b7b;
@@ -166,7 +225,7 @@ export default {
   width: 17vw;
   height: 15vh;
 
-  padding: 5px;
+  padding: 7px;
   margin-top: 5px;
   border-radius: 15px;
 }

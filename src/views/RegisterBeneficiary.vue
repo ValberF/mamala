@@ -79,6 +79,7 @@
 import ContentContainer from "../components/ContentContainer";
 import BodyContainer from "../components/BodyContainer";
 import axios from "axios";
+import { baseApiUrl } from "../global";
 
 export default {
   name: "RegisterBeneficiary",
@@ -95,18 +96,18 @@ export default {
   methods: {
     registerBeneficiary() {
       axios
-        .post("http://localhost:5000/address", this.address)
+        .post(baseApiUrl + "/address", this.address)
         .then((res) => {
           this.beneficiaryData.address_id = res.data.address[0];
           axios
-            .post("http://localhost:5000/beneficiary", this.beneficiaryData)
+            .post(baseApiUrl + "/beneficiary", this.beneficiaryData)
             .then((res) => {
               const stock = {
                 beneficiary_id: res.data.beneficiary[0],
                 stock_amount: 0,
               };
 
-              axios.post("http://localhost:5000/stock", stock).then(() => {
+              axios.post(baseApiUrl + "/stock", stock).then(() => {
                 this.$router.push({ path: "beneficiary-list" });
               })
             });

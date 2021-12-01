@@ -8,10 +8,15 @@ export default new Vuex.Store({
   state: {
     sideNavState: "close-sidenav",
     user: null,
-    isVisible: false,
-    actualDonor: {
-      
-    },
+    isVisible: { status: false, modalType: "" },
+    isVisibleExams: false,
+    isVisibleStatus: false,
+    actualDonor: {},
+    actualBeneficiary: {},
+    actualDonation: {},
+    prenatal: {},
+    prenatalData: {},
+    posnatalData: {},
   },
   mutations: {
     toggleMenu(state) {

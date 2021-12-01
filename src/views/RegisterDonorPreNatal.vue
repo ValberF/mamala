@@ -1,7 +1,7 @@
 <template>
   <div class="register-donor-pre-natal">
     <BodyContainer>
-      <h1>Sara Laura Marli Pereira</h1>
+      <h1>{{ actualDonor.donor_name }}</h1>
       <ContentContainer>
         <form>
           <div class="flex-column-start">
@@ -11,12 +11,11 @@
 
           <div class="section-container">
             <section class="section-box">
-
               <div class="flex-column-start">
                 <label for="exam">Exames:</label>
                 <textarea
                   name="exam"
-                  v-model="preNatalData.exams"
+                  v-model="preNatalData.prenatal_exam"
                   id="exam"
                 ></textarea>
               </div>
@@ -25,7 +24,7 @@
                 <label for="disease">Doenças:</label>
                 <textarea
                   name="disease"
-                  v-model="preNatalData.diseases"
+                  v-model="preNatalData.prenatal_disease"
                   id="disease"
                 ></textarea>
               </div>
@@ -36,7 +35,7 @@
                 <label for="medication">Medicação:</label>
                 <textarea
                   name="medication"
-                  v-model="preNatalData.medications"
+                  v-model="preNatalData.prenatal_medication"
                   id="medication"
                 ></textarea>
               </div>
@@ -47,7 +46,7 @@
                 >
                 <textarea
                   name="drugs"
-                  v-model="preNatalData.drugs"
+                  v-model="preNatalData.prenatal_toxic"
                   id="drugs"
                 ></textarea>
               </div>
@@ -75,18 +74,29 @@ export default {
   },
   data() {
     return {
-      preNatalData: {}
+      preNatalData: {},
     };
   },
   methods: {
     back() {
-      this.$router.push("donor-list");
+      this.$router.push({ path: "/donor-list" });
     },
     next() {
-      this.$router.push("register-donor-post-natal");
+      this.preNatalData.donor_id = this.actualDonor.donor_id;
+      Object.assign(this.prenatal, this.preNatalData); 
+      this.$router.push({ path: "/register-donor-post-natal" });
     },
   },
   computed: {
+    register() {
+      return this.$store.state.register;
+    },
+    actualDonor() {
+      return this.$store.state.actualDonor;
+    },
+    prenatal() {
+      return this.$store.state.prenatal;
+    },
   },
 };
 </script>

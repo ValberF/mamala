@@ -17,8 +17,8 @@ export default {
   align-items: center;
   flex-direction: column;
 
-  width: 23vw;
-  height: 32vh;
+  width: 30vw;
+  height: 34vh;
 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   color: #000;

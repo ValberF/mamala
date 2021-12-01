@@ -2,10 +2,6 @@
   <div class="home">
     <div class="grid-container">
       <Card>
-        <span>Doação de leite</span>
-      </Card>
-
-      <Card>
         <div id="map"></div>
       </Card>
 
@@ -17,10 +13,6 @@
             type="video/mp4"
           />
         </video>
-      </Card>
-
-      <Card>
-        <span>Eventos</span>
       </Card>
 
       <Card>
@@ -58,7 +50,7 @@ export default {
 <style>
 .grid-container {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto;
   grid-gap: 55px;
 }
 

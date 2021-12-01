@@ -107,6 +107,7 @@
 import axios from "axios";
 import ContentContainer from "../components/ContentContainer";
 import BodyContainer from "../components/BodyContainer";
+import { baseApiUrl } from "../global";
 
 export default {
   name: "RegisterDonorPersonalDetails",
@@ -123,7 +124,7 @@ export default {
   methods: {
     registerDonor() {
       axios
-        .post("http://localhost:5000/address", this.address)
+        .post(baseApiUrl + "/address", this.address)
         .then((res) => {
           let admin = localStorage.getItem("__user");
           admin = JSON.parse(admin);
@@ -132,7 +133,7 @@ export default {
           console.log(this.mothersData);
           console.log(JSON.stringify(this.mothersData));
           axios
-            .post("http://localhost:5000/donor", this.mothersData)
+            .post(baseApiUrl + "/donor", this.mothersData)
             .then(() => {
               this.$router.push({ path: "donor-list" });
             });

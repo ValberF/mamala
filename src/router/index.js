@@ -7,6 +7,7 @@ import RegisterDonorPostNatal from "../views/RegisterDonorPostNatal";
 import RegisterDonorPreNatal from "../views/RegisterDonorPreNatal";
 import RegisterBeneficiary from "../views/RegisterBeneficiary";
 import RegisterAdmin from "../views/RegisterAdmin";
+import RegisterObstetrician from "../views/RegisterObstetrician";
 import DonorList from "../views/DonorList";
 import BeneficiaryList from "../views/BeneficiaryList";
 import DonorPage from "../views/DonorPage";
@@ -143,6 +144,21 @@ const routes = [
       }
     },
     component: RegisterAdmin,
+  },
+  {
+    path: "/register-obstetrician",
+    name: "RegisterObstetrician",
+    beforeEnter(to, from, next) {
+      // check vuex store //
+      if (localStorage.getItem("__user")) {
+        next();
+      } else {
+        next({
+          name: "Login", // back to safety route //
+        });
+      }
+    },
+    component: RegisterObstetrician,
   },
   {
     path: "/about",

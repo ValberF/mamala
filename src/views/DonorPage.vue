@@ -1,66 +1,91 @@
 <template>
   <div class="donor-page">
-    <h1>Sara Laura Marli Pereira</h1>
-    <ContentContainer>
+    <h1>{{ actualDonor.donor_name }}</h1>
+    <ContentContainer v-if="flag">
       <div class="table-container">
         <table>
           <thead>
             <tr>
-              <th width="40%">Data da doação</th>
-              <th width="40%">Quantidade doada</th>
-              <th width="20%">Status da doação</th>
+              <th width="30%">Data da doação</th>
+              <th width="30%">Quantidade doada</th>
+              <th width="30%">Status da doação</th>
+              <th width="10%">Alterar Status</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td width="40%">17/05/2021</td>
-              <td width="40%">100 ml</td>
-              <td width="20%" style="color: yellow">Aguardando cultura</td>
-            </tr>
-            <tr>
-              <td width="40%">02/05/2021</td>
-              <td width="40%">100 ml</td>
-              <td width="20%" style="color: red">Indeferido</td>
-            </tr>
-            <tr>
-              <td width="40%">03/02/2020</td>
-              <td width="40%">100 ml</td>
-              <td width="20%" style="color: green">Deferido</td>
-            </tr>
-            <tr>
-              <td width="40%">20/01/2020</td>
-              <td width="40%">100 ml</td>
-              <td width="20%" style="color: green">Deferido</td>
+            <tr v-for="value in donations" :key="value.donation_id">
+              <td width="30%">{{ value.donation_date }}</td>
+              <td width="30%">{{ value.donation_amount }} ml</td>
+              <td width="30%">{{ value.donation_status }}</td>
+              <td width="10%" class="icon-class" @click="changeStatus(value)">
+                <i class="fas fa-sync"></i>
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
     </ContentContainer>
+    <div v-else class="placeholder">
+      <span>NENHUM DADO ENCONTRADO</span>
+    </div>
+    <ModalStatus />
   </div>
 </template>
 
 <script>
 import ContentContainer from "../components/ContentContainer";
+import ModalStatus from "../components/ModalStatus";
+import axios from "axios";
+import { baseApiUrl } from "../global";
 
 export default {
   name: "DonorPage",
   components: {
     ContentContainer,
+    ModalStatus,
   },
   data() {
-    return {};
+    return {
+      donations: [],
+      flag: false,
+    };
   },
   methods: {
-    mostrarDados() {
-      console.log(this.register);
+    showDonations() {
+      axios.get(baseApiUrl + "/donation").then((res) => {
+        res.data.forEach((element) => {
+          if (element.donor_id == this.actualDonor.donor_id) {
+            element.donation_date = element.donation_date.split("T");
+            element.donation_date = element.donation_date[0];
+            element.donation_date = element.donation_date.split("-");
+            element.donation_date =
+              element.donation_date[2] +
+              "/" +
+              element.donation_date[1] +
+              "/" +
+              element.donation_date[0];
+            this.donations.push(element);
+            this.flag = true;
+          }
+        });
+      });
+    },
+    changeStatus(actualDonation) {
+      this.$store.state.actualDonation = actualDonation;
+      this.$store.state.isVisibleStatus = true;
     },
   },
   computed: {
     register() {
       return this.$store.state.register;
     },
+    actualDonor() {
+      return this.$store.state.actualDonor;
+    },
   },
-  mounted() {},
+  mounted() {
+    this.showDonations();
+  },
 };
 </script>
 
@@ -75,6 +100,28 @@ export default {
   min-height: 75vh;
 }
 
+.donor-page button {
+  border: none;
+  cursor: pointer;
+  font-size: 25px;
+  outline: none;
+  color: #fff;
+  border-radius: 10px;
+
+  width: 8vw;
+  height: 40px;
+}
+
+.donor-page .modal-status select {
+  color: #777;
+  font-size: 25px;
+  border-radius: 5px;
+  border: 1px solid #7b7b7b;
+  padding: 5px;
+
+  outline: none;
+}
+
 .donor-page h1 {
   display: flex;
   justify-self: flex-start;
@@ -87,11 +134,22 @@ export default {
 .donor-page .table-container {
   overflow-y: scroll;
   min-height: 100%;
+  height: 65vh;
+  background-color: #dff0e6;
+  border-radius: 10px;
 }
 
 .donor-page table {
   border-collapse: collapse;
   width: 100%;
+}
+
+.donor-page thead {
+  background-color: #b4cabd;
+}
+
+.donor-page tr {
+  border-bottom: 1px solid #b4cabd;
 }
 
 .donor-page th {
@@ -107,9 +165,37 @@ td {
   text-align: left;
 }
 
+.donor-page .icon-class {
+  cursor: pointer;
+  text-align: center;
+  font-size: 20px;
+  transition: 0.2s;
+}
+
+.donor-page .icon-class:hover {
+  font-size: 25px;
+}
+
 .donor-page tbody tr:nth-child(odd) {
   background: #495e82;
   color: #fff;
+}
+
+.donor-page .placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(146, 222, 210, 0.5);
+  border-radius: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  padding: 30px;
+  min-height: 65vh;
+  width: 83vw;
+
+  color: rgb(118, 114, 114);
+  font-size: 2rem;
 }
 
 /* width */

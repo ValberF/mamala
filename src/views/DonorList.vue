@@ -6,13 +6,14 @@
         <table>
           <thead>
             <tr>
-              <th width="30%">Nome</th>
+              <th width="20%">Nome</th>
               <th width="15%">Data de Nascimento</th>
               <th width="15%">Contato</th>
               <th width="22%">Nome da mãe</th>
               <th width="6%">Nova Gravidez</th>
               <th width="6%">Nova Doação</th>
               <th width="6%">Doações</th>
+              <th width="10%">Pré-Natal/Pós-parto</th>
             </tr>
           </thead>
           <tbody>
@@ -21,18 +22,21 @@
               v-for="value in listDonor"
               :key="value.donor_id"
             >
-              <td width="34%">{{ value.donor_name }}</td>
+              <td width="20%">{{ value.donor_name }}</td>
               <td width="15%">{{ value.donor_birthDate }}</td>
               <td width="15%">{{ value.donor_phoneNumber }}</td>
               <td width="22%">{{ value.donor_grandmother }}</td>
-              <td width="6%" class="icon-class" @click="newPregnancy">
+              <td width="6%" class="icon-class" @click="newPregnancy(value)">
                 <i class="fas fa-plus-circle"></i>
               </td>
-              <td width="6%" class="icon-class" @click="donation( value )">
+              <td width="6%" class="icon-class" @click="donation(value)">
                 <i class="fas fa-plus-circle"></i>
               </td>
-              <td width="6%" class="icon-class">
+              <td width="6%" class="icon-class" @click="donationList(value)">
                 <i class="fas fa-folder-open"></i>
+              </td>
+              <td width="10%" class="icon-class" @click="getExams(value)">
+                <i class="far fa-file-alt"></i>
               </td>
             </tr>
           </tbody>
@@ -40,6 +44,7 @@
       </div>
     </ContentContainer>
     <Modal />
+    <ModalExams />
   </div>
 </template>
 
@@ -47,12 +52,16 @@
 import axios from "axios";
 import ContentContainer from "../components/ContentContainer";
 import Modal from "../components/Modal.vue";
+import ModalExams from "../components/ModalExams.vue";
+import { baseApiUrl } from "../global";
+import { calculaIdade, formatData } from "../utils/functions";
 
 export default {
   name: "DonorList",
   components: {
     ContentContainer,
     Modal,
+    ModalExams,
   },
   data() {
     return {
@@ -60,22 +69,18 @@ export default {
     };
   },
   methods: {
-    newPregnancy() {
+    newPregnancy(actualDonor) {
+      this.$store.state.actualDonor = actualDonor;
       this.$router.push("register-donor-pre-natal");
     },
     showDonors() {
       axios
-        .get("http://localhost:5000/donor")
+        .get(baseApiUrl + "/donor")
         .then((res) => {
-          res.data[0].donor_birthDate = res.data[0].donor_birthDate.split("T");
-          res.data[0].donor_birthDate = res.data[0].donor_birthDate[0];
-          res.data[0].donor_birthDate = res.data[0].donor_birthDate.split("-");
-          res.data[0].donor_birthDate =
-            res.data[0].donor_birthDate[2] +
-            "/" +
-            res.data[0].donor_birthDate[1] +
-            "/" +
-            res.data[0].donor_birthDate[0];
+          res.data.forEach((element) => {
+            element.donor_birthDate = formatData(element.donor_birthDate);
+          });
+
           this.listDonor = res.data;
         })
         .catch((err) => {
@@ -83,8 +88,91 @@ export default {
         });
     },
     donation(actualDonor) {
-      this.$store.state.actualDonor = actualDonor
-      this.$store.state.isVisible = true;
+      let flag = false;
+      axios
+        .get(baseApiUrl + "/postnatal")
+        .then((res) => {
+          for (let i = 0; i < res.data.length; i++) {
+            let idade = calculaIdade(formatData(res.data[i].postnatal_birthDate))
+
+            if (res.data[i].donor_id == actualDonor.donor_id && idade < 2) {
+              flag = true;
+            }
+          }
+        })
+        .then(() => {
+          if (flag) {
+            this.$store.state.actualDonor = actualDonor;
+            this.$store.state.isVisible.status = true;
+            this.$store.state.isVisible.modalType = "donor";
+          } else {
+            alert(
+              "Sem exame cadastrado ou doadora não está em condições de doar!"
+            );
+          }
+        });
+    },
+    donationList(actualDonor) {
+      this.$store.state.actualDonor = actualDonor;
+      this.$router.push("donor-page");
+    },
+    getExams(actualDonor) {
+      this.$store.state.actualDonor = actualDonor;
+      axios
+        .get(baseApiUrl + "/prenatal")
+        .then((res) => {
+          for (let i = 0; i < res.data.length; i++) {
+            if (res.data[i].donor_id == actualDonor.donor_id) {
+              Object.assign(this.prenatalData, res.data[i]);
+            }
+          }
+        })
+        .then(() => {
+          axios
+            .get(baseApiUrl + "/postnatal")
+            .then((res) => {
+              for (let i = 0; i < res.data.length; i++) {
+                if (
+                  res.data[i].donor_id == actualDonor.donor_id &&
+                  res.data[i].prenatal_id == this.prenatalData.prenatal_id
+                ) {
+                  res.data[i].postnatal_birthDate = res.data[
+                    i
+                  ].postnatal_birthDate.split("T");
+                  res.data[i].postnatal_birthDate =
+                    res.data[i].postnatal_birthDate[0];
+                  res.data[i].postnatal_birthDate = res.data[
+                    i
+                  ].postnatal_birthDate.split("-");
+                  res.data[i].postnatal_birthDate =
+                    res.data[i].postnatal_birthDate[2] +
+                    "/" +
+                    res.data[i].postnatal_birthDate[1] +
+                    "/" +
+                    res.data[i].postnatal_birthDate[0];
+                  if (res.data[i].postnatal_typeBirth == 0) {
+                    res.data[i].postnatal_typeBirth = "normal";
+                  } else {
+                    res.data[i].postnatal_typeBirth = "cesáreo";
+                  }
+                  Object.assign(this.postnatalData, res.data[i]);
+                }
+              }
+            })
+            .then(() => {
+              axios
+                .get(
+                  `http://localhost:5000/obstetrician/${this.postnatalData.obstetrician_id}`
+                )
+                .then((res) => {
+                  this.postnatalData.obstetrician_name =
+                    res.data.obstetrician_name;
+                  this.postnatalData.obstetrician_phoneNumber =
+                    res.data.obstetrician_phoneNumber;
+                  this.$store.state.isVisibleExams = true;
+                });
+            });
+        });
     },
   },
   mounted() {
@@ -93,6 +181,12 @@ export default {
   computed: {
     register() {
       return this.$store.state.register;
+    },
+    prenatalData() {
+      return this.$store.state.prenatalData;
+    },
+    postnatalData() {
+      return this.$store.state.prenatalData;
     },
   },
 };
@@ -134,6 +228,8 @@ export default {
   overflow-y: scroll;
   min-height: 100%;
   height: 65vh;
+  background-color: #dff0e6;
+  border-radius: 10px;
 }
 
 .donor-list table {
@@ -141,11 +237,18 @@ export default {
   width: 100%;
 }
 
+.donor-list thead {
+  background-color: #b4cabd;
+}
+
+.donor-list tr {
+  border-bottom: 1px solid #b4cabd;
+}
+
 .donor-list th {
   position: sticky;
   top: 0;
   z-index: 5;
-  background: #dff0e6;
 }
 
 .donor-list th,
@@ -158,8 +261,7 @@ td {
 
 .donor-list tbody {
   border: 1px solid #7b7b7b;
-  border-top: none;
-  border-right: none;
+  border: none;
 }
 
 .donor-list tbody tr:nth-child(odd) {
