@@ -26,6 +26,11 @@ export default new Vuex.Store({
         state.sideNavState = "close-sidenav";
       }
     },
+    closeMenu(state) {
+      if (state.sideNavState == "open-sidenav") {
+        state.sideNavState = "close-sidenav";
+      }
+    },
     setUser(state, user) {
       state.user = user;
       if (user) {

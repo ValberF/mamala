@@ -6,16 +6,6 @@
       </Card>
 
       <Card>
-        <h2>ESTERELIZAÇÃO DOS FRASCOS</h2>
-        <video controls>
-          <source
-            src="../assets/Como Esterilizar Corretamente Frasco de Armazenar Leite Materno.mp4"
-            type="video/mp4"
-          />
-        </video>
-      </Card>
-
-      <Card>
         <h2>PEDIDO DE ENTREGA A DOMICÍLIO</h2>
         <div class="icon-container">
           <i class="fas fa-female"></i>
@@ -32,6 +22,16 @@
           <img src="../assets/bottle.png" class="bottle" />
         </div>
       </Card>
+
+      <Card>
+        <h2>ESTERELIZAÇÃO DOS FRASCOS</h2>
+        <video controls>
+          <source
+            src="../assets/Como Esterilizar Corretamente Frasco de Armazenar Leite Materno.mp4"
+            type="video/mp4"
+          />
+        </video>
+      </Card>
     </div>
   </div>
 </template>
@@ -43,6 +43,14 @@ export default {
   name: "Home",
   components: {
     Card,
+  },
+  methods: {
+    refresh() {
+      this.$forceUpdate();
+    },
+  },
+  mounted() {
+    this.refresh();
   },
 };
 </script>
@@ -58,7 +66,7 @@ export default {
   height: 100%;
   width: 100%;
 
-  background-image: url('../assets/mapa.png');
+  background-image: url("../assets/mapa.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;

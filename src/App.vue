@@ -1,28 +1,34 @@
 npm run serve<template>
   <div id="app">
     <Header />
-    <Content />
+    <Content @click.native="closeMenu"/>
     <SideNav />
   </div>
 </template>
 
 <script>
-import Header from './templates/Header'
-import Content from './templates/Content'
-import SideNav from './components/SideNav'
+import Header from "./templates/Header";
+import Content from "./templates/Content";
+import SideNav from "./components/SideNav";
+import { mapState } from "vuex";
 
 export default {
   components: {
     Header,
     Content,
-    SideNav
-  }
-}
+    SideNav,
+  },
+  methods: {
+    closeMenu() {
+      this.$store.commit("closeMenu");
+    },
+  },
+  computed: mapState(["sideNavState"]),
+};
 </script>
 
-
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Jaldi&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Jaldi&display=swap");
 
 * {
   margin: 0;
@@ -30,7 +36,7 @@ export default {
 }
 
 #app {
-  font-family: 'Jaldi', sans-serif;
+  font-family: "Jaldi", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -54,7 +60,7 @@ export default {
 }
 
 .back {
-  background-color: #BD2626;
+  background-color: #bd2626;
 }
 
 .next {

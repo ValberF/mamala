@@ -43,7 +43,7 @@
         </table>
       </div>
     </ContentContainer>
-    <Modal />
+    <Modal buttonName="Doar"/>
     <ModalExams />
   </div>
 </template>

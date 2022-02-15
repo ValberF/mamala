@@ -40,12 +40,16 @@
               </div>
 
               <div class="flex-column-start">
-                <label for="disease">Doenças:</label>
-                <textarea
-                  name="disease"
-                  v-model="postNatalData.postnatal_disease"
-                  id="disease"
-                ></textarea>
+                <label for="medication">Local feito o pós-natal:</label>
+                <input type="text" v-model="postNatalData.postnatal_local" />
+              </div>
+
+              <div class="flex-column-start">
+                <label for="drugs">Data de Nascimento do bebê:</label>
+                <input
+                  type="date"
+                  v-model="postNatalData.postnatal_birthDate"
+                />
               </div>
             </section>
 
@@ -73,16 +77,12 @@
 
             <section class="section-box">
               <div class="flex-column-start">
-                <label for="medication">Local feito o pós-natal:</label>
-                <input type="text" v-model="postNatalData.postnatal_local" />
-              </div>
-
-              <div class="flex-column-start">
-                <label for="drugs">Data de Nascimento do bebê:</label>
-                <input
-                  type="date"
-                  v-model="postNatalData.postnatal_birthDate"
-                />
+                <label for="disease">Doenças:</label>
+                <textarea
+                  name="disease"
+                  v-model="postNatalData.postnatal_disease"
+                  id="disease"
+                ></textarea>
               </div>
             </section>
           </div>
@@ -187,9 +187,10 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-self: center;
 
-  height: 95%;
+  height: 92%;
   width: 50%;
 }
 

@@ -10,6 +10,9 @@
             placeholder="Quantidade a ser doada"
             v-model="amount"
           />
+          <label v-if="isVisible.modalType == 'beneficiary'" for="beneficiarys"
+            >Escolha o ponto de distribuição:</label
+          >
           <select
             v-if="isVisible.modalType == 'beneficiary'"
             name="beneficiarys"
@@ -24,7 +27,7 @@
             >
           </select>
         </form>
-        <button class="next" @click="donate">Doar</button>
+        <button class="next" @click="donate">{{ buttonName }}</button>
       </div>
     </div>
     <div id="overlay" @click="closeModal"></div>
@@ -41,8 +44,10 @@ export default {
       amount: Number,
       listBeneficiary: [],
       beneficiaryId: Number,
+      stock: Number,
     };
   },
+  props: ["buttonName"],
   methods: {
     closeModal() {
       this.$store.state.isVisible.status = false;
@@ -63,19 +68,34 @@ export default {
         };
 
         axios.post("http://localhost:5000/donation", donation).then(() => {
-          axios
-            .get("http://localhost:5000/stock")
-            .then((res) => {
-              let stockAmount =
-                Number(this.amount) + Number(res.data[0].stock_amount);
-              axios.put("http://localhost:5000/stock/1", {
-                stock_amount: stockAmount,
-              });
-            })
-            .then(() => {
-              this.$store.state.isVisible.status = false;
-            });
+          this.$store.state.isVisible.status = false;
         });
+      } else if (this.isVisible.modalType == "donorBeneficiary") {
+        axios
+          .get("http://localhost:5000/stock")
+          .then((res) => {
+            for (let i = 0; i < res.data.length; i++) {
+              if (
+                res.data[i].beneficiary_id ==
+                this.actualBeneficiary.beneficiary_id
+              ) {
+                this.stock = res.data[i];
+                if (this.stock.stock_amount > this.amount) {
+                  this.stock.stock_amount =
+                    this.stock.stock_amount - this.amount;
+                }
+              }
+            }
+          })
+          .then(() => {
+            axios
+              .put(`http://localhost:5000/stock/${this.stock.stock_id}`, {
+                stock_amount: this.stock.stock_amount,
+              })
+              .then(() => {
+                this.$store.state.isVisible.status = false;
+              });
+          });
       } else {
         axios.get("http://localhost:5000/stock").then((res) => {
           let stockAmount =
@@ -169,14 +189,19 @@ export default {
   align-items: center;
   justify-content: space-between;
 
-  height: 60%;
+  height: 75%;
 }
 
 .modal form {
   display: flex;
   flex-direction: column;
-  height: 50%;
+  height: 60%;
   justify-content: space-around;
+}
+
+.modal label {
+  text-align: start;
+  font-size: 25px;
 }
 
 .modal #overlay {

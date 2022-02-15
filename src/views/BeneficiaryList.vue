@@ -12,6 +12,7 @@
                 <th width="35%">Endereço</th>
                 <th width="10%">Estoque</th>
                 <th width="10%" style="text-align: center">Distribuir</th>
+                <th width="10%" style="text-align: center">Retirar</th>
               </tr>
             </thead>
             <tbody>
@@ -24,15 +25,18 @@
                 <td width="15%">{{ value.beneficiary_phoneNumber }}</td>
                 <td width="35%">{{ value.address }}</td>
                 <td width="10%">{{ value.stock }} ml</td>
-                <td width="10%" class="icon-class" @click="donation(value)">
+                <td width="5%" class="icon-class" @click="transfer(value)">
                   <i class="fas fa-plus-circle"></i>
+                </td>
+                <td width="5%" class="icon-class" @click="donation(value)">
+                  <i class="fas fa-location-arrow"></i>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
       </ContentContainer>
-      <Modal />
+      <Modal buttonName="Transferir" />
     </BodyContainer>
   </div>
 </template>
@@ -78,7 +82,8 @@ export default {
               .then(() => {
                 axios
                   .get(
-                     baseApiUrl + `/stock/${this.listBeneficiary[i].beneficiary_id}`
+                    baseApiUrl +
+                      `/stock/${this.listBeneficiary[i].beneficiary_id}`
                   )
                   .then((res) => {
                     this.listBeneficiary[i].stock = res.data.stock_amount;
@@ -91,10 +96,15 @@ export default {
           console.log(err);
         });
     },
+    transfer(actualBeneficiary) {
+      this.$store.state.actualBeneficiary = actualBeneficiary;
+      this.$store.state.isVisible.status = true;
+      this.$store.state.isVisible.modalType = "beneficiary";
+    },
     donation(actualBeneficiary) {
       this.$store.state.actualBeneficiary = actualBeneficiary;
       this.$store.state.isVisible.status = true;
-      this.$store.state.isVisible.modalType = 'beneficiary';
+      this.$store.state.isVisible.modalType = "donorBeneficiary";
     },
   },
   mounted() {

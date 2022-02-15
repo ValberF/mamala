@@ -54,16 +54,12 @@
                 v-model="address.address_reference"
                 placeholder="Ponto de referência"
               />
-            </div>
 
-            <div class="input-group">
-              <div>
-                <input
-                  type="text"
-                  v-model="beneficiaryData.beneficiary_phoneNumber"
-                  placeholder="Telefone/Celular"
-                />
-              </div>
+              <input
+                type="text"
+                v-model="beneficiaryData.beneficiary_phoneNumber"
+                placeholder="Telefone/Celular"
+              />
             </div>
           </section>
         </form>
@@ -109,7 +105,7 @@ export default {
 
               axios.post(baseApiUrl + "/stock", stock).then(() => {
                 this.$router.push({ path: "beneficiary-list" });
-              })
+              });
             });
         })
         .catch((err) => {

@@ -29,13 +29,24 @@ export default {
       this.$store.state.isVisibleStatus = false;
     },
     updateStatus() {
-      alert(this.$store.state.actualDonation.donation_id);
       axios
         .put(
           baseApiUrl +
             `/donation/${this.$store.state.actualDonation.donation_id}`,
           { donation_status: this.status }
         )
+        .then(() => {
+          if (this.status == "Deferido") {
+            axios.get("http://localhost:5000/stock").then((res) => {
+              let stockAmount =
+                Number(this.$store.state.actualDonation.donation_amount) +
+                Number(res.data[0].stock_amount);
+              axios.put("http://localhost:5000/stock/1", {
+                stock_amount: stockAmount,
+              });
+            });
+          }
+        })
         .then(() => {
           this.$store.state.isVisibleStatus = false;
         })
